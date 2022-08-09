@@ -25,7 +25,7 @@
                 <div class="row">
 
                     <div class="col-md-5">
-                        <input type="text" class="form-control" id="qr_link" name="qr_link">
+                        <input type="text" class="form-control" id="qr_link" name="qr_link" required>
                     </div>
                     <div class="col-md-1" style="margin-top:5px;">
                         <button type="submit" class="btn btn-sm btn-success">Generate</button>
