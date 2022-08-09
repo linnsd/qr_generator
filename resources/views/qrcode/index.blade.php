@@ -73,6 +73,7 @@
                     @endforeach
                    </tbody>
                 </table>
+                {!! $qr_list->appends(request()->input())->links() !!}
                </div>
             </div>
         </div>
