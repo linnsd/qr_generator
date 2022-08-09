@@ -66,7 +66,7 @@ class QRGenerateController extends Controller
                 File::delete($destinationPath . 'qrcode.png');
             }
 
-            $qrcode = QrCode::size(300)
+            $qrcode = QrCode::size(170)
                 ->format('png')
                 ->generate($request->qr_link, public_path('uploads/qrcode/'.$photo));
 
