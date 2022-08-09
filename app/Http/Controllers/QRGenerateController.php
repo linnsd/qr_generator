@@ -19,9 +19,9 @@ class QRGenerateController extends Controller
 
         $count=$qr_list->get()->count();
 
-        $qr_list = $qr_list->orderBy('created_at','desc')->paginate(5);
+        $qr_list = $qr_list->orderBy('created_at','desc')->paginate(10);
       
-        return view('qrcode.index',compact('count','qr_list'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('qrcode.index',compact('count','qr_list'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
