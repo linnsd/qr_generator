@@ -44,35 +44,42 @@ class QRGenerateController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $photo = 'qrcode'.date("Y-m-d-H-m-s").'.png';
-        $qr_generate = QRGenerate::create([
-            'path'=>'/uploads/qrcode/',
-            'photo'=>$photo,
-            'qr_link'=>$request->qr_link
-        ]);
+        $qr_count = QRGenerate::where('qr_link',$request->qr_link)->get()->count();
+        // dd($qr_count);
+        if ($qr_count == 0) {
+            $photo = 'qrcode'.date("Y-m-d-H-m-s").'.png';
+            $qr_generate = QRGenerate::create([
+                'path'=>'/uploads/qrcode/',
+                'photo'=>$photo,
+                'qr_link'=>$request->qr_link
+            ]);
 
-        // $path = $member->path;
+            // $path = $member->path;
 
-        $destinationPath = public_path() . '/uploads/qrcode/';
+            $destinationPath = public_path() . '/uploads/qrcode/';
 
-        if (!File::isDirectory($destinationPath)) {
-            File::makeDirectory($destinationPath, 0777, true, true);
+            if (!File::isDirectory($destinationPath)) {
+                File::makeDirectory($destinationPath, 0777, true, true);
+            }
+
+            if (File::exists($destinationPath . 'qrcode.png')) {
+                File::delete($destinationPath . 'qrcode.png');
+            }
+
+            $qrcode = QrCode::size(300)
+                ->format('png')
+                ->generate($request->qr_link, public_path('uploads/qrcode/'.$photo));
+
+            // dd($qrcode);
+
+            // return redirect()->route('qr.index') 
+            //     ->with('success', 'QrCode generate  success!.');
+
+            $qr_data = QRGenerate::find($qr_generate->id);
+        }else{
+            $qr_data = QRGenerate::where('qr_link',$request->qr_link)->first();
         }
-
-        if (File::exists($destinationPath . 'qrcode.png')) {
-            File::delete($destinationPath . 'qrcode.png');
-        }
-
-        $qrcode = QrCode::size(300)
-            ->format('png')
-            ->generate($request->qr_link, public_path('uploads/qrcode/'.$photo));
-
-        // dd($qrcode);
-
-        // return redirect()->route('qr.index') 
-        //     ->with('success', 'QrCode generate  success!.');
-
-        $qr_data = QRGenerate::find($qr_generate->id);
+        
 
         return view('qrcode.create',compact('qr_data'));
     }
