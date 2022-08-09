@@ -124,9 +124,12 @@ class QRGenerateController extends Controller
      * @param  \App\Models\QRGenerate  $qRGenerate
      * @return \Illuminate\Http\Response
      */
-    public function destroy(QRGenerate $qRGenerate)
+    public function destroy($id)
     {
-        //
+        // dd($id);
+        $qr_data = QRGenerate::find($id)->delete();
+        return redirect()->route('qr.index')->with('message','success');
+
     }
 
     public function qr_download(Request $request)

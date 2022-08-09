@@ -105,6 +105,6 @@ class QrCodeController extends Controller
      */
     public function destroy(QrCode $qrCode)
     {
-        //
+        dd("Here");
     }
 }
