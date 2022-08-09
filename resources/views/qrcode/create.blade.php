@@ -35,7 +35,7 @@
                 </div>
             </form>
             @if($qr_data != null)
-            <div class="row">
+            <div class="row" style="margin-top:10px;">
                 <div class="col-md-4" align="center">
                      <img src="{{asset($qr_data->path.$qr_data->photo)}}" style="width:200px;height: 200px;">
                      <form action="{{route('qr.download')}}" method="post">
@@ -43,7 +43,7 @@
                        @method('Post')
                        <input type="hidden" name="qr_path" value="{{$qr_data->path}}">
                        <input type="hidden" name="qr_photo" value="{{$qr_data->photo}}">
-                    <button class="btn btn-success btn-sm" type="submit">
+                    <button class="btn btn-success btn-sm" type="submit" style="margin-top:10px;">
                             Download QR
                         </button>
                     </form>
