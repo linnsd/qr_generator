@@ -14,13 +14,20 @@
 
         <div class="card">
             <div class="card-header">
-                <h2>QR Code Generate</h2>
+               <!--  <h2>QR Code Generate</h2>
+             
+                    <a href="{{route('qr.index')}}" class="btn btn-primary btn-sm" style="float: right;color: white;">Recent QR List</a> -->
+                <h5 class="d-flex justify-content-between align-items-center">
+                  QR Code Generate
+                  <a href="{{route('qr.index')}}" class="btn btn-primary btn-sm" style="color: white;">Recent QR List</a>
 
+                  <!-- Wrap with <div>...buttons...</div> if you have multiple buttons -->
+                </h5>
             </div>
 
             <div class="card-body">
-                <a href="{{route('qr.index')}}" class="btn btn-primary btn-sm" style="margin-bottom: 10px;float: right;color: white;">Recent QR List</a>
-                <br>
+                <!-- <a href="{{route('qr.index')}}" class="btn btn-primary btn-sm" style="margin-bottom: 10px;float: right;color: white;">Recent QR List</a>
+                <br> -->
                 <form action="{{route('qr.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
