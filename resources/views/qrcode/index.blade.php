@@ -39,7 +39,7 @@
             </div>
             <div class="card-body">
                <div class="table-responsive" style="font-size:14px;margin-top: 10px;">
-                <a href="{{route('qr.create')}}" class="btn btn-primary btn-sm" style="margin-bottom: 10px;color: white;">Back</a>
+                <a href="{{url('/')}}" class="btn btn-primary btn-sm" style="margin-bottom: 10px;color: white;">Back</a>
                 <table class="table table-bordered">
                     <thead class="table-primary">
                      <tr> 
