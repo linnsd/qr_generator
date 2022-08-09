@@ -20,3 +20,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\QRGenerateController::class, 'index']);
 
 Route::resource('qr','\App\Http\Controllers\QRGenerateController');
+
+Route::post('/qr_download', [\App\Http\Controllers\QRGenerateController::class, 'qr_download'])->name('qr.download');

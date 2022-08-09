@@ -13,9 +13,15 @@ class QRGenerateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('qrcode.index');
+        $qr_list = new QRGenerate();
+
+        $count=$qr_list->get()->count();
+
+        $qr_list = $qr_list->orderBy('created_at','desc')->paginate(10);
+      
+        return view('qrcode.index',compact('count','qr_list'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -107,5 +113,19 @@ class QRGenerateController extends Controller
     public function destroy(QRGenerate $qRGenerate)
     {
         //
+    }
+
+    public function qr_download(Request $request)
+    {
+        // dd($request->all());
+
+        $strpath = public_path().$request->qr_path.$request->qr_photo;
+        // dd($strpath);
+        $myFile = str_replace("\\", '/', $strpath);
+        $headers = ['Content-Type: application/*'];
+        $newName = $request->qr_photo.'.png';
+
+
+        return response()->download($myFile, $newName, $headers);
     }
 }
