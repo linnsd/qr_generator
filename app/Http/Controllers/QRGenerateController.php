@@ -31,7 +31,8 @@ class QRGenerateController extends Controller
      */
     public function create()
     {
-        return view('qrcode.create');
+        $qr_data = null;
+        return view('qrcode.create',compact('qr_data'));
     }
 
     /**
@@ -44,9 +45,10 @@ class QRGenerateController extends Controller
     {
         // dd($request->all());
         $photo = 'qrcode'.date("Y-m-d-H-m-s").'.png';
-        $attendance_qr = QRGenerate::create([
+        $qr_generate = QRGenerate::create([
             'path'=>'/uploads/qrcode/',
-            'photo'=>$photo
+            'photo'=>$photo,
+            'qr_link'=>$request->qr_link
         ]);
 
         // $path = $member->path;
@@ -61,19 +63,18 @@ class QRGenerateController extends Controller
             File::delete($destinationPath . 'qrcode.png');
         }
 
-
-        // $qrcode = QrCode::backgroundColor(255, 255, 255)->color(0,0,0)
-        //     ->format('png')->size(300)
-        //     ->generate($request->qr_link);
-
-        $qrcode = QrCode::size(300)
-            ->format('png')
-            ->generate($request->qr_link, public_path('uploads/qrcode/'.$photo));
+        // $qrcode = QrCode::size(300)
+        //     ->format('png')
+        //     ->generate($request->qr_link, public_path('uploads/qrcode/'.$photo));
 
         // dd($qrcode);
 
-        return redirect()->route('qr.index') 
-            ->with('success', 'QrCode generate  success!.');
+        // return redirect()->route('qr.index') 
+        //     ->with('success', 'QrCode generate  success!.');
+
+        $qr_data = QRGenerate::find($qr_generate->id);
+
+        return view('qrcode.create',compact('qr_data'));
     }
 
     /**

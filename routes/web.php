@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [\App\Http\Controllers\QRGenerateController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\QRGenerateController::class, 'create']);
 
 Route::resource('qr','\App\Http\Controllers\QRGenerateController');
 

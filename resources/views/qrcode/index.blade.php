@@ -17,14 +17,14 @@
                 <h2>QR Code List</h2>
             </div>
             <div class="card-body">
-               <!--  {!! QrCode::size(300)->generate('https://techvblogs.com/blog/generate-qr-code-laravel-8') !!} -->
                <div class="table-responsive" style="font-size:14px;margin-top: 10px;">
-                <a href="{{route('qr.create')}}" class="btn btn-success btn-sm" style="margin-bottom: 10px;float: right;">Generate QR</a>
+                <a href="{{route('qr.create')}}" class="btn btn-primary btn-sm" style="margin-bottom: 10px;color: white;">Back</a>
                 <table class="table table-bordered">
                     <thead class="table-primary">
                      <tr> 
                        <th>No</th>
                          <th>QR Code</th>
+                         <th>QR Link</th>
                          <th>Action</th>
                      </tr>
                    </thead>
@@ -35,6 +35,7 @@
                         <td>
                             <img src="{{asset($qr->path.$qr->photo)}}" style="width:100px;height: 100px;">
                         </td>
+                        <td>{{$qr->qr_link}}</td>
                         <td>
                             <form action="{{route('qr.download')}}" method="post">
                                    @csrf
@@ -53,15 +54,6 @@
                </div>
             </div>
         </div>
-
-      <!--   <div class="card">
-            <div class="card-header">
-                <h2>Color QR Code</h2>
-            </div>
-            <div class="card-body">
-                {!! QrCode::size(300)->backgroundColor(255,90,0)->generate('https://techvblogs.com/blog/generate-qr-code-laravel-8') !!}
-            </div>
-        </div> -->
 
     </div>
 </body>

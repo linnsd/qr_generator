@@ -9,5 +9,5 @@ class QRGenerate extends Model
 {
     use HasFactory;
     protected $table = 'q_r_generates';
-    protected $fillable = ['path','photo'];
+    protected $fillable = ['path','photo','qr_link'];
 }

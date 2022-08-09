@@ -15,10 +15,12 @@
         <div class="card">
             <div class="card-header">
                 <h2>QR Code Generate</h2>
+
             </div>
+
             <div class="card-body">
-              
-                <a href="" class="btn btn-primary btn-sm" style="margin-bottom: 10px;color: white;">Back</a>
+                <a href="{{route('qr.index')}}" class="btn btn-primary btn-sm" style="margin-bottom: 10px;float: right;color: white;">Recent QR List</a>
+                <br>
                 <form action="{{route('qr.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
@@ -32,18 +34,26 @@
                     </div>
                 </div>
             </form>
-              
+            @if($qr_data != null)
+            <div class="row">
+                <div class="col-md-4" align="center">
+                     <img src="{{asset('uploads/qrcode/qrcode2022-08-09-03-08-48.png')}}" style="width:200px;height: 200px;">
+                     <form action="{{route('qr.download')}}" method="post">
+                       @csrf
+                       @method('Post')
+                       <input type="hidden" name="qr_path" value="{{$qr_data->path}}">
+                       <input type="hidden" name="qr_photo" value="{{$qr_data->photo}}">
+                    <button class="btn btn-success btn-sm" type="submit">
+                            Download QR
+                        </button>
+                    </form>
+                </div>
+                
+            </div>
+            @endif
+            
             </div>
         </div>
-
-      <!--   <div class="card">
-            <div class="card-header">
-                <h2>Color QR Code</h2>
-            </div>
-            <div class="card-body">
-                {!! QrCode::size(300)->backgroundColor(255,90,0)->generate('https://techvblogs.com/blog/generate-qr-code-laravel-8') !!}
-            </div>
-        </div> -->
 
     </div>
 </body>
