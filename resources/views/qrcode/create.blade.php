@@ -37,7 +37,7 @@
             @if($qr_data != null)
             <div class="row">
                 <div class="col-md-4" align="center">
-                     <img src="{{asset('uploads/qrcode/qrcode2022-08-09-03-08-48.png')}}" style="width:200px;height: 200px;">
+                     <img src="{{asset($qr_data->path.$qr_data->photo)}}" style="width:200px;height: 200px;">
                      <form action="{{route('qr.download')}}" method="post">
                        @csrf
                        @method('Post')
