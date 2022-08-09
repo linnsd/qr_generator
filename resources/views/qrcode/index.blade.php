@@ -73,7 +73,11 @@
                     @endforeach
                    </tbody>
                 </table>
-              
+              @if ($qr_list->hasPages())
+                    <div class="pagination-wrapper">
+                         {{ $qr_list->links() }}
+                    </div>
+                @endif
                </div>
             </div>
         </div>
