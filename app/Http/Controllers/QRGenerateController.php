@@ -62,9 +62,15 @@ class QRGenerateController extends Controller
         }
 
 
-        $qrcode = QrCode::backgroundColor(255, 255, 255)->color(0,0,0)
-            ->format('png')->size(300)
-            ->generate($request->qr_link);
+        // $qrcode = QrCode::backgroundColor(255, 255, 255)->color(0,0,0)
+        //     ->format('png')->size(300)
+        //     ->generate($request->qr_link);
+
+        $qrcode = QrCode::size(300)
+            ->format('png')
+            ->generate($request->qr_link, public_path('uploads/qrcode/'.$photo));
+
+        // dd($qrcode);
 
         return redirect()->route('qr.index') 
             ->with('success', 'QrCode generate  success!.');
