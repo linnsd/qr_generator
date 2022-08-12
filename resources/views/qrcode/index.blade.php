@@ -1,45 +1,21 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title>QR Generator</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0- 
-     alpha/css/bootstrap.css" rel="stylesheet">
-
-     <link rel="stylesheet" type="text/css" 
-     href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-     <script type="text/javascript">
-         @if(Session::has('message'))
-          toastr.options =
-          {
-            "closeButton" : true,
-            "progressBar" : true
-          }
-                toastr.success("{{ session('message') }}");
-          @endif
-     </script>
-</head>
-
-<body>
-
-    <div class="container mt-4">
-
-        <div class="card">
-            <div class="card-header">
-                <h2>QR Code List</h2>
-            </div>
-            <div class="card-body">
-               <div class="table-responsive" style="font-size:14px;margin-top: 10px;">
-                <a href="{{url('/')}}" class="btn btn-primary btn-sm" style="margin-bottom: 10px;color: white;">Back</a>
+@extends('layout')
+  
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12" style="margin-top:10px;">
+            <div class="card">
+                <div class="card-header">QR Code List</div>
+  
+                <div class="card-body">
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+  
+                    <div class="table-responsive" style="font-size:14px;margin-top: 10px;">
+                <a href="{{url('/qr_create')}}" class="btn btn-primary btn-sm" style="margin-bottom: 10px;color: white;">Back</a>
                 <table class="table table-bordered">
                     <thead class="table-primary">
                      <tr> 
@@ -66,7 +42,7 @@
                                 <button class="btn btn-success btn-sm" type="submit">
                                     Download QR
                                 </button>
-                                <a class="btn btn-sm btn-danger btn-sm" onclick="return confirm('Are you sure?')" href="{{route('qr.destroy',$qr->id)}}">Delete</a>
+                                <!-- <a class="btn btn-sm btn-danger btn-sm" onclick="return confirm('Are you sure?')" href="{{route('qr.destroy',$qr->id)}}">Delete</a> -->
                             </form>
                         </td>
                     </tr>
@@ -79,9 +55,9 @@
                     </div>
                 @endif
                </div>
+                </div>
             </div>
         </div>
-
     </div>
-</body>
-</html>
+</div>
+@endsection
