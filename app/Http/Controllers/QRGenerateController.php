@@ -114,9 +114,13 @@ class QRGenerateController extends Controller
      * @param  \App\Models\QRGenerate  $qRGenerate
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, QRGenerate $qRGenerate)
+    public function update_remark(Request $request)
     {
-        //
+        // dd($request->all());
+        $data = QRGenerate::find($request->qr_id)->update([
+            'remark'=>$request->remark
+        ]);
+        return redirect()->route('qr.index')->with('message','success');
     }
 
     /**

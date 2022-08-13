@@ -26,10 +26,6 @@ Route::post('post-login', [\App\Http\Controllers\Auth\AuthController::class, 'po
 Route::get('registration', [\App\Http\Controllers\Auth\AuthController::class, 'registration'])->name('register');
 
 Route::post('post-registration', [\App\Http\Controllers\Auth\AuthController::class, 'postRegistration'])->name('register.post');
-	
-// Route::get('/', function () {
-//     return redirect('login');
-// })->middleware('auth');
 
 Route::get('qr_create',function(){
     return view('qrcode.create');
@@ -45,6 +41,8 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
 
 	Route::resource('qr','\App\Http\Controllers\QRGenerateController');
+
+	Route::get('update_remark',[\App\Http\Controllers\QRGenerateController::class, 'update_remark'])->name('update_remark');
 
 	Route::resource('users','App\Http\Controllers\UserController');
 
