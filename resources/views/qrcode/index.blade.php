@@ -17,14 +17,14 @@
 
                   <!-- Modal Header -->
                   <div class="modal-header">
-                    <h4 class="modal-title">Update Remark</h4>
+                    <h4 class="modal-title">Update Item Name</h4>
                     <button type="button" class="btn btn-sm" data-bs-dismiss="modal"><i class="fa fa-window-close"></i></button>
                   </div>
 
                   <!-- Modal body -->
                   <div class="modal-body">
                     <form action="{{ route('update_remark') }}" method="get" accept-charset="utf-8" class="form-horizontal">
-                        <input type="text" name="remark" id="remark" class="form-control form-group" placeholder="Remark">
+                        <input type="text" name="remark" id="remark" class="form-control form-group" placeholder="Item Name">
                         <input type="hidden" name="qr_id" id="qr_id">
                         <div class="row form-group">
                             <div class="col-md-4"></div>
@@ -62,7 +62,7 @@
                        <th>No</th>
                          <th>QR Code</th>
                          <th>QR Link</th>
-                         <th>Remark</th>
+                         <th>Item Name</th>
                          <th>Action</th>
                      </tr>
                    </thead>

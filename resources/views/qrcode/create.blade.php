@@ -28,7 +28,7 @@
                     <div class="row">
 
                         <div class="col-md-5">
-                            <input type="text" class="form-control form-group" id="remark" name="remark" required placeholder="Remark">
+                            <input type="text" class="form-control form-group" id="remark" name="remark" required placeholder="Item Name">
 
                             <input type="text" class="form-control" id="qr_link" name="qr_link" required placeholder="Website Link">
                         </div>
