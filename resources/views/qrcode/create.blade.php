@@ -28,9 +28,11 @@
                     <div class="row">
 
                         <div class="col-md-5">
-                            <input type="text" class="form-control" id="qr_link" name="qr_link" required>
+                            <input type="text" class="form-control form-group" id="remark" name="remark" required placeholder="Remark">
+
+                            <input type="text" class="form-control" id="qr_link" name="qr_link" required placeholder="Website Link">
                         </div>
-                        <div class="col-md-1" style="margin-top:5px;">
+                        <div class="col-md-1" style="margin-top:60px;">
                             <button type="submit" class="btn btn-sm btn-success">Generate</button>
                         </div>
                     </div>
@@ -49,6 +51,7 @@
                             </button>
                         </form>
                     </div>
+                    
                     
                 </div>
                 @endif

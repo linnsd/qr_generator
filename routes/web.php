@@ -23,11 +23,21 @@ Route::get('/', [\App\Http\Controllers\Auth\AuthController::class, 'index'])->na
 
 Route::post('post-login', [\App\Http\Controllers\Auth\AuthController::class, 'postLogin'])->name('login.post'); 
 
-	Route::get('registration', [\App\Http\Controllers\Auth\AuthController::class, 'registration'])->name('register');
+Route::get('registration', [\App\Http\Controllers\Auth\AuthController::class, 'registration'])->name('register');
 
-	Route::post('post-registration', [\App\Http\Controllers\Auth\AuthController::class, 'postRegistration'])->name('register.post');
+Route::post('post-registration', [\App\Http\Controllers\Auth\AuthController::class, 'postRegistration'])->name('register.post');
 	
+// Route::get('/', function () {
+//     return redirect('login');
+// })->middleware('auth');
+
+Route::get('qr_create',function(){
+    return view('qrcode.create');
+})->middleware("auth");
+
+
 Route::group(['middleware'=>'auth'],function(){
+
 	Route::get('/qr_create', [\App\Http\Controllers\QRGenerateController::class, 'create'])->name('qr.create');
 
 	

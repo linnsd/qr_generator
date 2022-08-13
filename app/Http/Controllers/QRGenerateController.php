@@ -51,7 +51,8 @@ class QRGenerateController extends Controller
             $qr_generate = QRGenerate::create([
                 'path'=>'/uploads/qrcode/',
                 'photo'=>$photo,
-                'qr_link'=>$request->qr_link
+                'qr_link'=>$request->qr_link,
+                'remark'=>$request->remark
             ]);
 
             // $path = $member->path;

@@ -22,6 +22,7 @@
                        <th>No</th>
                          <th>QR Code</th>
                          <th>QR Link</th>
+                         <th>Remark</th>
                          <th>Action</th>
                      </tr>
                    </thead>
@@ -33,6 +34,7 @@
                             <img src="{{asset($qr->path.$qr->photo)}}" style="width:100px;height: 100px;">
                         </td>
                         <td>{{$qr->qr_link}}</td>
+                        <td>{{$qr->remark}}</td>
                         <td>
                             <form action="{{route('qr.download')}}" method="post">
                                    @csrf

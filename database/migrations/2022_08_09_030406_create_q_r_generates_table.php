@@ -18,6 +18,7 @@ class CreateQRGeneratesTable extends Migration
             $table->string('path');
             $table->string('photo');
             $table->string('qr_link');
+            $table->string('remark')->nullable();
             $table->timestamps();
         });
     }
