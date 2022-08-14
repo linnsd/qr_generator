@@ -57,6 +57,8 @@
             
             @else
             <a class="nav-link" href="{{ route('users.index') }}">User List</a>
+
+            <a class="nav-link" href="{{ route('roles.index') }}">Role List</a>
         @endif
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">

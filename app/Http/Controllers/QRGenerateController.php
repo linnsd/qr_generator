@@ -8,6 +8,14 @@ use QrCode;
 use File;
 class QRGenerateController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:qr-list|qr-create|qr-edit|qr-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:qr-create', ['only' => ['create','store']]);
+         $this->middleware('permission:qr-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:qr-delete', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

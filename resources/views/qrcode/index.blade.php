@@ -79,15 +79,19 @@
                             <form action="{{route('qr.download')}}" method="post">
                                    @csrf
                                    @method('Post')
+                                @can('qr-edit')
                                <button id="alert_modal" type="button" class="btn btn-sm btn-primary"  data-remark="{{$qr->remark}}" data-id="{{$qr->id}}">
                                   <i class="fa fa-fw fa-edit"></i>
                                 </button>
+                                @endcan
 
+                                @can('qr-download')
                                <input type="hidden" name="qr_path" value="{{$qr->path}}">
                                <input type="hidden" name="qr_photo" value="{{$qr->photo}}">
                                 <button class="btn btn-success btn-sm" type="submit">
                                     Download QR
                                 </button>
+                                @endcan
                                 <!-- <a class="btn btn-sm btn-danger btn-sm" onclick="return confirm('Are you sure?')" href="{{route('qr.destroy',$qr->id)}}">Delete</a> -->
                             </form>
                         </td>

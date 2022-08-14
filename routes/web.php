@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\Auth\AuthController::class, 'index'])->name('login');
 
+Auth::routes();
+
 Route::post('post-login', [\App\Http\Controllers\Auth\AuthController::class, 'postLogin'])->name('login.post'); 
 
 Route::get('registration', [\App\Http\Controllers\Auth\AuthController::class, 'registration'])->name('register');
@@ -34,10 +36,11 @@ Route::get('qr_create',function(){
 
 Route::group(['middleware'=>'auth'],function(){
 
+	Route::resource('roles', '\App\Http\Controllers\RoleController');
+
 	Route::get('/qr_create', [\App\Http\Controllers\QRGenerateController::class, 'create'])->name('qr.create');
 
 	
-
 	Route::get('logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
 
 	Route::resource('qr','\App\Http\Controllers\QRGenerateController');
@@ -50,3 +53,7 @@ Route::group(['middleware'=>'auth'],function(){
 
 	Route::get('qr/destroy/{id}',[\App\Http\Controllers\QRGenerateController::class, 'destroy'])->name('qr.destroy');
 });
+
+
+
+

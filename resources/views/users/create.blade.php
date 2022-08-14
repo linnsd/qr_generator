@@ -41,6 +41,26 @@
                                   @endif
                               </div>
                           </div>
+
+                          <div class="form-group row">
+                              <label for="password" class="col-md-4 col-form-label text-md-right">Role</label>
+                              <div class="col-md-6">
+                               
+                                 {!! Form::select('roles[]', $roles,[], array('class' => 'form-control')) !!}
+                            
+                                  
+                                  @if ($errors->has('password'))
+                                      <span class="text-danger">{{ $errors->first('password') }}</span>
+                                  @endif
+                              </div>
+                          </div>
+
+                        <!--   <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Role:</strong>
+                                {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
+                            </div>
+                        </div> -->
   
                           <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">

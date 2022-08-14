@@ -27,6 +27,7 @@
                        <th>No</th>
                          <th>User Name</th>
                          <th>Email</th>
+                         <th>Roles</th>
                          <th>Action</th>
                      </tr>
                    </thead>
@@ -37,16 +38,27 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>
+                          @if(!empty($user->getRoleNames()))
+                            @foreach($user->getRoleNames() as $v)
+                               <label class="badge badge-success">{{ $v }}</label>
+                            @endforeach
+                          @endif
+                        </td>
+                        <td>
                            <form action="{{route('users.destroy',$user->id)}}" method="post"
                                  onsubmit="return confirm('Do you want to delete?');">
                                  @csrf
                                  @method('DELETE')
+
+                                 @can('user-edit')
                                  <a class="btn btn-sm btn-primary" href="{{route('users.edit',$user->id)}}"><i
                                          class="fa fa-fw fa-edit"></i></a>
-                                
+                                    @endcan
+                                @can('user-delete')
                                  <button class="btn btn-sm btn-danger btn-sm" type="submit">
                                      <i class="fa fa-fw fa-trash" title="Delete"></i>
                                  </button>
+                                @endcan
                             </form>
                         </td>
                     </tr>
