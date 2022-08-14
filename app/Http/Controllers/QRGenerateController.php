@@ -25,6 +25,11 @@ class QRGenerateController extends Controller
     {
         $qr_list = new QRGenerate();
 
+        if (auth()->user()->name == "Admin") {
+            $qr_list = $qr_list;
+        }else{
+            $qr_list = $qr_list->where('c_by',auth()->user()->id);
+        }
         $count=$qr_list->get()->count();
 
         $qr_list = $qr_list->orderBy('created_at','desc')->paginate(10);
@@ -60,7 +65,8 @@ class QRGenerateController extends Controller
                 'path'=>'/uploads/qrcode/',
                 'photo'=>$photo,
                 'qr_link'=>$request->qr_link,
-                'remark'=>$request->remark
+                'remark'=>$request->remark,
+                'c_by'=>auth()->user()->id
             ]);
 
             // $path = $member->path;
