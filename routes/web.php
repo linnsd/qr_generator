@@ -46,15 +46,15 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('qr', '\App\Http\Controllers\QRGenerateController');
 
 	//qr export
-	Route::post('qr_export','\App\Http\Controllers\QRGenerateController@qr_export')->name('qr_export');
+	Route::post('qr_export', '\App\Http\Controllers\QRGenerateController@qr_export')->name('qr_export');
 
 	//qr generate
-	Route::get('generate_qr/{id}','\App\Http\Controllers\QRGenerateController@generate_qr')->name('qr.generate_qr');
+	Route::get('generate_qr/{id}', '\App\Http\Controllers\QRGenerateController@generate_qr')->name('qr.generate_qr');
 
 	//qr detail
-	Route::get('qr_detail/{id}','\App\Http\Controllers\QRGenerateController@qr_detail')->name('qr_detail');
+	Route::get('qr_detail/{id}', '\App\Http\Controllers\QRGenerateController@qr_detail')->name('qr_detail');
 
-	Route::get('update_remark',[\App\Http\Controllers\QRGenerateController::class, 'update_remark'])->name('update_remark');
+	Route::get('update_remark', [\App\Http\Controllers\QRGenerateController::class, 'update_remark'])->name('update_remark');
 	Route::get('update_remark', [\App\Http\Controllers\QRGenerateController::class, 'update_remark'])->name('update_remark');
 
 	Route::resource('users', 'App\Http\Controllers\UserController');
@@ -66,4 +66,5 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// PC Sale
 	Route::resource('/pc_sale', '\App\Http\Controllers\PcSaleController');
+	Route::post('/pc_sale/export', '\App\Http\Controllers\PcSaleController@export')->name('pc_sale.export');
 });

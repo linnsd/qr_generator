@@ -24,6 +24,15 @@ class PcSale extends Model
                 ->orWhere('u_by', 'like', '%' . $request->keyword . '%');
         }
 
+
+
+        if ($request->from_date != "" and $request->to_date != "") {
+            $from = date('Y-m-d', strtotime($request->from_date));
+            $to = date('Y-m-d', strtotime($request->to_date));
+
+            $pc_sales = $pc_sales->whereBetween('date', [$from, $to]);
+        }
+
         return $pc_sales;
     }
 
