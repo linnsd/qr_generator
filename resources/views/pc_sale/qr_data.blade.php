@@ -36,29 +36,64 @@
     .left {
       text-align: left;
     }
+    .watermark {
+            visibility: visible;
+            /*position: absolute;*/
+            z-index: -1;
+            bottom: 0;
+            /*left: 0;
+            right: 0;*/
+            background: url({{ asset('linnlogo.jpg') }});
+            opacity: 1;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
   </style>
 </head>
 <body>
-   <div class="wrapper">
+   <div class="watermark">
     <h3>Linn IT Solution Co.,Ltd</h3>
     <table>
-        <thead>
+        <!-- <thead>
           <th>Linn Computer</th>
           <th>Sale To Service</th>
           <th class="bg-dark">PC Sales</th>
-        </thead>
+        </thead> -->
         <tbody>
-          {{-- 1 --}}
-         <tr>
-          <th colspan="2" class="left">
-            Customer Name - {{$data->c_name}}
+          
+         <!-- <tr>
+          <th colspan="3" class="left">
+            <div>
+              
+            </div>
+            <div>
+              Customer Phone - {{$data->c_phone}}
+            </div>
+            <div>
+              Customer Phone - {{date('d-m-Y',strtotime($data->date))}}
+            </div>
           </th>
-          <th class="left">Date - {{date('d-m-Y',strtotime($data->date))}}</th>
-         </tr>
-         {{-- 2 --}}
+         </tr> -->
          <tr>
-          <th colspan="3" class="left">Customer Phone - {{$data->c_phone}}</th>
+           <th colspan="3" class="left">
+             Customer Name - {{$data->c_name}}
+           </th>
          </tr>
+         <tr>
+           <th colspan="3" class="left">
+             Customer Phone - {{$data->c_phone}}
+           </th>
+         </tr>
+
+         <tr>
+           <th colspan="3" class="left">
+             Date - {{date('d-m-Y',strtotime($data->date))}}
+           </th>
+         </tr>
+
+
          {{-- CPU --}}
          <tr>
           <th class="left">CPU</th>
