@@ -62,7 +62,7 @@
 
             <a class="nav-link" href="{{ route('roles.index') }}">Role List</a>
 
-            <a class="nav-link" href="{{ route('roles.index') }}">QR Generator</a>
+            <a class="nav-link" href="{{ route('qr.index') }}">QR Generator</a>
 
             <a class="nav-link" href="{{ route('pc_sale.index') }}">PC Sale</a>
         @endif

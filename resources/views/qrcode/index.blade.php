@@ -7,6 +7,10 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<?php
+    $item_name = isset($_GET['item_name']) ? $_GET['item_name'] : '';
+?>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12" style="margin-top:10px;">
@@ -54,8 +58,17 @@
                         </div>
                     @endif
   
-                    <div class="table-responsive" style="font-size:14px;margin-top: 10px;">
-                <a href="{{url('/qr_create')}}" class="btn btn-primary btn-sm" style="margin-bottom: 10px;color: white;">Back</a>
+                    <div class="table-responsive" style="font-size:14px;">
+                    <a href="{{url('/qr_create')}}" class="btn btn-primary btn-sm form-group" style="color: white;">Back</a>
+                    <form action="{{route('qr.index')}}">
+                        @csrf
+                        @method('POST')
+                        <div class="col-md-3">
+                            <input type="text" name="item_name" id="item_name" class="form-control form-group" placeholder="Search Item..." value="{{old('item_name',$item_name)}}">
+                        </div>
+                        
+                    </form>
+                    
                 <table class="table table-bordered">
                     <thead class="table-primary">
                      <tr> 
@@ -123,5 +136,9 @@
             $('#qr_id').val(qr_id);
             $('#myModal').modal('show');
         });
+
+    $('#item_name').change(function(){
+        this.form().submit();
+    });
 </script>
 @endpush
