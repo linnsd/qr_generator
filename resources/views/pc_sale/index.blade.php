@@ -48,12 +48,16 @@
                                     <a href="{{route('pc_sale.show',$data->id)}}" target="_blank" class="btn btn-sm btn-info mr-1"><i class="fas fa-fw fa-eye"></i></a>
                                     <a href="{{route('pc_sale.edit',$data->id)}}" class="btn btn-sm btn-primary mr-1"><i class="fas fa-fw fa-edit"></i></a>
 
+                                    <a href="{{route('qr.generate_qr',$data->id)}}" class="btn btn-sm btn-success mr-1"><i class="fas fa-fw fa-qrcode"></i></a>
+
+                                     <a href="{{route('qr.print_qr',$data->id)}}" target="_blank" class="btn btn-sm btn-secondary mr-1"><i class="fas fa-fw fa-print"></i></a>
+
                                     <form action="{{route('pc_sale.destroy',$data->id)}}" method="POST">
                                         @csrf
                                         <button type="submit" onclick="return confirm('Are You Sure You Want To Delete This?')" class="btn btn-sm btn-danger mr-1"><i class="fas fa-fw fa-trash"></i></button>
                                         @method('delete')
                                     </form>
-                                     <a href="{{route('qr.generate_qr',$data->id)}}" class="btn btn-sm btn-success mr-1">Generate QR</a>
+                                     
                                 </div>
                             </td>
                         </tr>

@@ -55,6 +55,9 @@ Route::group(['middleware' => 'auth'], function () {
 	//qr detail
 	Route::get('qr_detail/{id}','\App\Http\Controllers\QRGenerateController@qr_detail')->name('qr_detail');
 
+	// print_qr
+	Route::get('print_qr/{id}','App\Http\Controllers\QRGenerateController@print_qr')->name('qr.print_qr');
+
 	Route::get('update_remark',[\App\Http\Controllers\QRGenerateController::class, 'update_remark'])->name('update_remark');
 	Route::get('update_remark', [\App\Http\Controllers\QRGenerateController::class, 'update_remark'])->name('update_remark');
 

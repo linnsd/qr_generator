@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\QRGenerate;
+use App\Models\PcSale;
 use Illuminate\Http\Request;
 use QrCode;
 use File;
@@ -204,5 +205,11 @@ class QRGenerateController extends Controller
 
         // return redirect()->route('pc_sale.index')->with('success','success');
         return response()->download($myFile, $newName, $headers);
+    }
+
+    public function print_qr($id)
+    {
+        $data = PcSale::find($id);
+        return view('pc_sale.print_data', compact('data'));
     }
 }
