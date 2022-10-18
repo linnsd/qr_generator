@@ -48,6 +48,11 @@
               </div>
             </div>
 
+            <form action="{{route('qr_export')}}" id="qr_export_form" method="post">
+                @csrf
+                @method('POST')
+                <input type="hidden" name="item_name" value="{{$item_name}}">
+            </form>
             <div class="card">
                 <div class="card-header">QR Code List</div>
   
@@ -63,9 +68,15 @@
                     <form action="{{route('qr.index')}}">
                         @csrf
                         @method('POST')
-                        <div class="col-md-3">
-                            <input type="text" name="item_name" id="item_name" class="form-control form-group" placeholder="Search Item..." value="{{old('item_name',$item_name)}}">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" name="item_name" id="item_name" class="form-control form-group" placeholder="Search Item..." value="{{old('item_name',$item_name)}}">
+                            </div>
+                            <div class="col-md-9">
+                                <a class="btn btn-sm btn-warning" style="float: right;" id="export">Export</a>
+                            </div>
                         </div>
+                        
                         
                     </form>
                     
@@ -139,6 +150,9 @@
 
     $('#item_name').change(function(){
         this.form().submit();
+    });
+    $('#export').click(function(){
+        $('#qr_export_form').submit();
     });
 </script>
 @endpush

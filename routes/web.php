@@ -45,6 +45,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::resource('qr', '\App\Http\Controllers\QRGenerateController');
 
+	//qr export
+	Route::post('qr_export','\App\Http\Controllers\QRGenerateController@qr_export')->name('qr_export');
+
+	Route::get('update_remark',[\App\Http\Controllers\QRGenerateController::class, 'update_remark'])->name('update_remark');
 	Route::get('update_remark', [\App\Http\Controllers\QRGenerateController::class, 'update_remark'])->name('update_remark');
 
 	Route::resource('users', 'App\Http\Controllers\UserController');

@@ -6,6 +6,8 @@ use App\Models\QRGenerate;
 use Illuminate\Http\Request;
 use QrCode;
 use File;
+use App\Exports\QRExport;
+use Maatwebsite\Excel\Facades\Excel;
 class QRGenerateController extends Controller
 {
     function __construct()
@@ -167,5 +169,10 @@ class QRGenerateController extends Controller
 
 
         return response()->download($myFile, $newName, $headers);
+    }
+
+    public function qr_export()
+    {
+        return Excel::download(new QRExport,'qr_list.xlsx');
     }
 }
