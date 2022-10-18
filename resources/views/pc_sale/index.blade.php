@@ -40,38 +40,20 @@
                             <td>{{$data->c_name}}</td>
                             <td>{{$data->c_phone}}</td>
                             <td>{{date('d-m-Y',strtotime($data->date))}}</td>
-                            <td>
-                                @switch($data->branch)
-                                @case(1)
-                                    HO
-                                    @break
-                                @case(2)
-                                    Linn 1
-                                    @break
-                                @case(3)
-                                    Linn 2
-                                    @break
-                                @case(4)
-                                    Linn 3
-                                    @break
-                                @case(5)
-                                    Gadget Store
-                                    @break
-                                @default
-                                    
-                            @endswitch
-                            </td>
+                            <td>{{$data->branch}}</td>
                             <td>{{$data->c_by}}</td>
                             <td>{{$data->u_by}}</td>
                             <td>
                                 <div class="d-flex">
-                                    <a target="_black" href="{{route('pc_sale.show',$data->id)}}" class="btn btn-sm btn-info mr-1">Detail</a>
-                                    <a href="{{route('pc_sale.edit',$data->id)}}" class="btn btn-sm btn-info mr-1">Edit</a>
+                                    <a href="{{route('pc_sale.show',$data->id)}}" target="_blank" class="btn btn-sm btn-info mr-1"><i class="fas fa-fw fa-eye"></i></a>
+                                    <a href="{{route('pc_sale.edit',$data->id)}}" class="btn btn-sm btn-primary mr-1"><i class="fas fa-fw fa-edit"></i></a>
+
                                     <form action="{{route('pc_sale.destroy',$data->id)}}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        <button type="submit" onclick="return confirm('Are You Sure You Want To Delete This?')" class="btn btn-sm btn-danger mr-1"><i class="fas fa-fw fa-trash"></i></button>
                                         @method('delete')
                                     </form>
+                                     <a href="{{route('qr.generate_qr',$data->id)}}" class="btn btn-sm btn-success mr-1">Generate QR</a>
                                 </div>
                             </td>
                         </tr>
