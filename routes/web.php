@@ -33,6 +33,7 @@ Route::get('qr_create', function () {
 	return view('qrcode.create');
 })->middleware("auth");
 
+Route::get('qr_data/{id}','\App\Http\Controllers\FrontendController@qr_data')->name('qr_data');
 
 Route::group(['middleware' => 'auth'], function () {
 

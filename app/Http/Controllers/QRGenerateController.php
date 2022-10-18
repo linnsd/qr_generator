@@ -8,6 +8,7 @@ use QrCode;
 use File;
 use App\Exports\QRExport;
 use Maatwebsite\Excel\Facades\Excel;
+use URL;
 class QRGenerateController extends Controller
 {
     function __construct()
@@ -190,8 +191,18 @@ class QRGenerateController extends Controller
             File::delete($destinationPath . 'qrcode.png');
         }
 
+        // dd();
         $qrcode = QrCode::size(170)
             ->format('png')
-            ->generate($request->qr_link, public_path('uploads/pc_sale/'.$photo));
+            ->generate(URL::to("/").'/qr_data/'.$id, public_path('uploads/pc_sale/'.$photo));
+
+        $strpath = public_path().'/uploads/pc_sale/'.$photo;
+        // dd($strpath);
+        $myFile = str_replace("\\", '/', $strpath);
+        $headers = ['Content-Type: application/*'];
+        $newName = $photo.'.png';
+
+        // return redirect()->route('pc_sale.index')->with('success','success');
+        return response()->download($myFile, $newName, $headers);
     }
 }
