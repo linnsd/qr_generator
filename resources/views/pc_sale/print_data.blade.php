@@ -44,10 +44,25 @@
          margin: 0;
          -webkit-print-color-adjust: exact;
          }
+         .watermark {
+            visibility: visible;
+            /*position: absolute;*/
+            z-index: -1;
+            bottom: 0;
+            /*left: 0;
+            right: 0;*/
+            background: url({{ asset('linnlogo.jpg') }});
+            opacity: 1;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
       </style>
    </head>
    <body>
-      <div class="wrapper">
+      <!-- <div class="wrapper" > -->
+        <div class="watermark">
           <h3>Linn IT Solution Co.,Ltd</h3>
     <table>
         <thead>
