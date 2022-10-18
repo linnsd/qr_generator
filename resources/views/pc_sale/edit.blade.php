@@ -39,7 +39,7 @@ rel="stylesheet">
                         <div class="form-group row">
                               <label for="date" class="col-md-4 col-form-label text-md-right">Date</label>
                               <div class="col-md-6">
-                                  <input type="text" id="date" class="form-control" name="date" required value="{{$data->date}}">
+                                  <input type="text" id="date" class="form-control" name="date" required value="{{date('d-m-Y',strtotime($data->date))}}">
                                   @if ($errors->has('date'))
                                       <span class="text-danger">{{ $errors->first('date') }}</span>
                                   @endif
@@ -204,6 +204,8 @@ rel="stylesheet">
   $(document).ready(function(){
    $("#date").datepicker({
        format: "dd-mm-yyyy",
+       "setDate": new Date(),
+        "autoclose": true,
    });
   })
 </script>

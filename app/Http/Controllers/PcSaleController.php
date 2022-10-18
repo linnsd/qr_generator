@@ -52,7 +52,7 @@ class PcSaleController extends Controller
      * @param  \App\Models\pc_sale  $pc_sale
      * @return \Illuminate\Http\Response
      */
-    public function show(pc_sale $pc_sale)
+    public function show(PcSale $pc_sale)
     {
         //
         return view('pc_sale.show');

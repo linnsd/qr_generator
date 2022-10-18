@@ -4,7 +4,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
 
-<div class="container">
+<div class="">
+   <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12" style="margin-top:10px;">
             <div class="card">
@@ -111,5 +112,9 @@
             </div>
         </div>
     </div>
+   </div>
+</div>
+<div class="container">
+    
 </div>
 @endsection

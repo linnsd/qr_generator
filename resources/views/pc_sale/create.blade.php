@@ -204,6 +204,8 @@ rel="stylesheet">
   $(document).ready(function(){
    $("#date").datepicker({
        format: "dd-mm-yyyy",
+       "setDate": new Date(),
+        "autoclose": true
    });
   })
 </script>
