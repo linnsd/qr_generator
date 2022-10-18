@@ -27,21 +27,9 @@
                         <th>Name</th>
                         <th>Phone</th>
                         <th>Date</th>
-                        <th>CPU</th>
-                        <th>Board</th>
-                        <th>Memory</th>
-                        <th>HDD</th>
-                        <th>Graphic</th>
-                        <th>Power Supply</th>
-                        <th>Drive</th>
-                        <th>Casing</th>
-                        <th>Monitor</th>
-                        <th>UPS</th>
-                        <th>Keyboard Mouse</th>
-                        <th>Antivirus</th>
-                        <th>Other</th>
-                        <th>Created By</th>
                         <th>Branch</th>
+                        <th>Created By</th>
+                        <th>Updated By</th>
                         <th>Action</th>
                      </tr>
                    </thead>
@@ -52,20 +40,6 @@
                             <td>{{$data->c_name}}</td>
                             <td>{{$data->c_phone}}</td>
                             <td>{{date('d-m-Y',strtotime($data->date))}}</td>
-                            <td>{{$data->cpu}}</td>
-                            <td>{{$data->board}}</td>
-                            <td>{{$data->memory}}</td>
-                            <td>{{$data->hdd}}</td>
-                            <td>{{$data->graphic}}</td>
-                            <td>{{$data->power_supply}}</td>
-                            <td>{{$data->drive}}</td>
-                            <td>{{$data->casing}}</td>
-                            <td>{{$data->monitor}}</td>
-                            <td>{{$data->ups}}</td>
-                            <td>{{$data->keyboard_mouse}}</td>
-                            <td>{{$data->antivirus}}</td>
-                            <td>{{$data->other}}</td>
-                            <td>{{$data->created_name}}</td>
                             <td>
                                 @switch($data->branch)
                                 @case(1)
@@ -87,9 +61,11 @@
                                     
                             @endswitch
                             </td>
+                            <td>{{$data->c_by}}</td>
+                            <td>{{$data->u_by}}</td>
                             <td>
                                 <div class="d-flex">
-                                    <a href="{{route('pc_sale.show',$data->id)}}" class="btn btn-sm btn-info mr-1">Detail</a>
+                                    <a target="_black" href="{{route('pc_sale.show',$data->id)}}" class="btn btn-sm btn-info mr-1">Detail</a>
                                     <a href="{{route('pc_sale.edit',$data->id)}}" class="btn btn-sm btn-info mr-1">Edit</a>
                                     <form action="{{route('pc_sale.destroy',$data->id)}}" method="POST">
                                         @csrf
