@@ -11,7 +11,7 @@
     $item_name = isset($_GET['item_name']) ? $_GET['item_name'] : '';
 ?>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12" style="margin-top:10px;">
             <!-- The Modal -->
@@ -53,7 +53,7 @@
                 @method('POST')
                 <input type="hidden" name="item_name" value="{{$item_name}}">
             </form>
-            <div class="card">
+            <div class="card w-100">
                 <div class="card-header">QR Code List</div>
   
                 <div class="card-body">
@@ -140,6 +140,9 @@
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+    setTimeout(function() {
+        $(".alert").hide();
+    }, 2000);
     $('#alert_modal').click(function(){
             const data_remark = $('#alert_modal').attr("data-remark");
             const qr_id = $('#alert_modal').attr("data-id");

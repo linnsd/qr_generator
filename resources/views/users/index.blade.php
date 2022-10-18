@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
 
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12" style="margin-top:10px;">
             <div class="card">
@@ -98,4 +98,13 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script>
+   $(document).ready(function(){
+        setTimeout(function() {
+            $(".alert").hide();
+        }, 2000);
+    });
+</script>
 @endsection

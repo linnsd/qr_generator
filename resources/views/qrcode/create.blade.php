@@ -1,10 +1,10 @@
 @extends('layout')
   
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12" style="margin-top:10px;">
-            <div class="card">
+            <div class="card w-100">
                 <div class="card-header">
                 <h5 class="d-flex justify-content-between align-items-center">
                   QR Code Generate
