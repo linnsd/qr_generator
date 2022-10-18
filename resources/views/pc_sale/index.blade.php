@@ -2,9 +2,16 @@
   
 @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
+<link id="bsdp-css" href="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker3.min.css"
+rel="stylesheet">
 
 <div class="">
+    @php
+        $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';  
+        $from_date = isset($_GET['from_date']) ? $_GET['from_date'] : '';
+        $to_date = isset($_GET['to_date']) ? $_GET['to_date'] : '';
+    @endphp
    <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12" style="margin-top:10px;">
@@ -18,8 +25,30 @@
                         </div>
                     @endif
   
+                <div class="d-flex justify-content-end align-items-center">
+                    <a href="" class="btn btn-sm btn-warning text-white mr-1" id="export_btn"><i class="fa fa-fw fa-file-excel"></i> Export</a>
+                    <a href="{{route('pc_sale.create')}}" class="btn btn-success btn-sm" style="color: white;"><i class="fa fa-fw fa-plus"></i>Create</a>
+                </div>
+
+                {{-- excel form --}}
+                <form action="{{route('pc_sale.export')}}" method="POST" id="excel_form">
+                    @csrf
+                    <input type="hidden" name="keyword" value="{{$keyword}}">
+                    <input type="hidden" name="from_date" value="{{$from_date}}">
+                    <input type="hidden" name="to_date" value="{{$to_date}}">
+                </form>
+
+
+                <form action="{{route('pc_sale.index')}}" method="GET" autocomplete="off">
+                    <div class="d-flex">
+                        <input type="text" name="keyword" id="keyword" placeholder="keyword" class="form-control col-2 mr-1" value="{{old('keyword',$keyword)}}">
+                        <input type="text" id="from_date" class="form-control date col-1 mr-1" name="from_date" value="{{old('from_date',$from_date)}}" placeholder="From Date">
+                        <input type="text" id="to_date" class="form-control date col-1 mr-1" name="to_date" value="{{old('from_date',$to_date)}}" placeholder="To Date">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+
                 <div class="table-responsive" style="font-size:14px;margin-top: 10px;">
-                <a href="{{route('pc_sale.create')}}" class="btn btn-success btn-sm" style="margin-bottom: 10px;color: white;float: right;"><i class="fa fa-fw fa-plus"></i>Create</a>
                 <table class="table table-bordered">
                     <thead class="table-primary">
                      <tr> 
@@ -63,7 +92,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="20" style="text-align: center">No Data</td>
+                            <td colspan="8" style="text-align: center">No Data</td>
                         </tr>
                     @endforelse
                    </tbody>
@@ -82,11 +111,25 @@
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 <script>
    $(document).ready(function(){
         setTimeout(function() {
             $(".alert").hide();
         }, 2000);
+
+        $(".date").datepicker({
+            format: "dd-mm-yyyy",
+            "setDate": new Date(),
+            "autoclose": true
+        });
+
+
+        $("#export_btn").click(function(e){
+            e.preventDefault();
+            $("#excel_form").submit();
+        });
     });
+
 </script>
 @endsection

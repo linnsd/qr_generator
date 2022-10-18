@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PcSaleExport;
 use App\Models\PcSale;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -13,12 +15,12 @@ class PcSaleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $pc_sales = new PcSale();
-        $pc_sales = $pc_sales->orderBy('created_at', 'desc')->paginate(10);
-        return view('pc_sale.index', compact('pc_sales'))->with('i', (request()->input('page', 1) - 1) * 10);;
+        $pc_sales = PcSale::list($request);
+        $pc_sales = $pc_sales->paginate(10);
+        return view('pc_sale.index', compact('pc_sales'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -97,5 +99,10 @@ class PcSaleController extends Controller
         $pc_sale = PcSale::find($id);
         $pc_sale->delete();
         return redirect("pc_sale")->withSuccess('Success');
+    }
+
+    public function export()
+    {
+        return Excel::download(new PcSaleExport, 'pc_sale.xlsx');
     }
 }
