@@ -10,7 +10,7 @@ class PcSale extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['c_name', 'c_phone', 'date', 'cpu', 'board', 'memory', 'hdd', 'graphic', 'power_supply', 'drive', 'casing', 'monitor', 'ups', 'keyboard_mouse', 'antivirus', 'other', 'c_by', 'u_by'];
+    protected $fillable = ['c_name', 'c_phone', 'date', 'cpu', 'board', 'memory', 'hdd', 'graphic', 'power_supply', 'drive', 'casing', 'monitor', 'ups', 'keyboard_mouse', 'antivirus', 'other', 'c_by', 'u_by', 'branch'];
 
 
     public static function store_date($request)
@@ -32,7 +32,8 @@ class PcSale extends Model
         $pc_sale->keyboard_mouse = $request->keyboard_mouse;
         $pc_sale->antivirus = $request->antivirus;
         $pc_sale->other = $request->other;
-        $pc_sale->c_by = Auth::user()->id;
+        $pc_sale->c_by = Auth::user()->name;
+        $pc_sale->branch = Auth::user()->branch;
         $pc_sale->save();
     }
 
@@ -55,7 +56,8 @@ class PcSale extends Model
         $pc_sale->keyboard_mouse = $request->keyboard_mouse;
         $pc_sale->antivirus = $request->antivirus;
         $pc_sale->other = $request->other;
-        $pc_sale->u_by = Auth::user()->id;
+        $pc_sale->u_by = Auth::user()->name;
+        $pc_sale->branch = Auth::user()->branch;
         $pc_sale->save();
     }
 }

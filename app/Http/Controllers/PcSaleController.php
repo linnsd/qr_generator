@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PcSale;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class PcSaleController extends Controller
 {
@@ -16,9 +17,7 @@ class PcSaleController extends Controller
     {
         //
         $pc_sales = new PcSale();
-        $pc_sales = $pc_sales->leftjoin('users', 'users.id', '=', 'pc_sales.c_by')
-            ->select('users.name AS created_name', 'users.branch AS branch', 'pc_sales.*')
-            ->orderBy('created_at', 'desc')->paginate(10);
+        $pc_sales = $pc_sales->orderBy('created_at', 'desc')->paginate(10);
         return view('pc_sale.index', compact('pc_sales'))->with('i', (request()->input('page', 1) - 1) * 10);;
     }
 
@@ -52,10 +51,11 @@ class PcSaleController extends Controller
      * @param  \App\Models\pc_sale  $pc_sale
      * @return \Illuminate\Http\Response
      */
-    public function show(PcSale $pc_sale)
+    public function show($id)
     {
         //
-        return view('pc_sale.show');
+        $data = PcSale::find($id);
+        return view('pc_sale.show', compact('data'));
     }
 
     /**
