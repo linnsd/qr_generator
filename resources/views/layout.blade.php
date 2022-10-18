@@ -64,7 +64,7 @@
 
             <a class="nav-link" href="{{ route('qr.index') }}">QR Generator</a>
 
-            <a class="nav-link" href="{{ route('roles.index') }}">PC Sale</a>
+            <a class="nav-link" href="{{ route('pc_sale.index') }}">PC Sale</a>
         @endif
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
