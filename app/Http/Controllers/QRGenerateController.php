@@ -180,6 +180,8 @@ class QRGenerateController extends Controller
     {
         $photo = 'qrcode'.date("Y-m-d-H-m-s").'.png';
 
+        $destinationPath = public_path() . '/uploads/pc_sale/';
+
         if (!File::isDirectory($destinationPath)) {
             File::makeDirectory($destinationPath, 0777, true, true);
         }
@@ -188,8 +190,8 @@ class QRGenerateController extends Controller
             File::delete($destinationPath . 'qrcode.png');
         }
 
-            $qrcode = QrCode::size(170)
-                ->format('png')
-                ->generate($request->qr_link, public_path('uploads/pc_sale/'.$photo));
+        $qrcode = QrCode::size(170)
+            ->format('png')
+            ->generate($request->qr_link, public_path('uploads/pc_sale/'.$photo));
     }
 }
