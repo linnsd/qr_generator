@@ -28,6 +28,7 @@
                          <th>User Name</th>
                          <th>Email</th>
                          <th>Roles</th>
+                         <th>Branch</th>
                          <th>Action</th>
                      </tr>
                    </thead>
@@ -37,6 +38,27 @@
                         <td>{{++$i}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
+                        <td>
+                            @switch($user->branch)
+                                @case(1)
+                                    HO
+                                    @break
+                                @case(2)
+                                    Linn 1
+                                    @break
+                                @case(3)
+                                    Linn 2
+                                    @break
+                                @case(4)
+                                    Linn 3
+                                    @break
+                                @case(5)
+                                    Gadget Store
+                                    @break
+                                @default
+                                    
+                            @endswitch
+                        </td>
                         <td>
                           @if(!empty($user->getRoleNames()))
                             @foreach($user->getRoleNames() as $v)

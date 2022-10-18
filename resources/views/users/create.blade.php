@@ -43,6 +43,23 @@
                           </div>
 
                           <div class="form-group row">
+                            <label for="branch" class="col-md-4 col-form-label text-md-right">Branch</label>
+                            <div class="col-md-6">
+                               <select name="branch" id="branch" class="form-control">
+                                    <option value="" selected>--Select--</option>
+                                    <option value="1">HO</option>
+                                    <option value="2">Linn 1</option>
+                                    <option value="3">Linn 2</option>
+                                    <option value="4">Linn 3</option>
+                                    <option value="5">Gadget Store</option>
+                               </select>
+                                @if ($errors->has('branch'))
+                                    <span class="text-danger">{{ $errors->first('branch') }}</span>
+                                @endif
+                            </div>
+                        </div>
+
+                          <div class="form-group row">
                               <label for="password" class="col-md-4 col-form-label text-md-right">Role</label>
                               <div class="col-md-6">
                                

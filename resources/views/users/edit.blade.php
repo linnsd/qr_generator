@@ -43,6 +43,22 @@
                           </div>
 
                           <div class="form-group row">
+                            <label for="branch" class="col-md-4 col-form-label text-md-right">Branch</label>
+                            <div class="col-md-6">
+                               <select name="branch" id="branch" class="form-control">
+                                    <option value="">--Select--</option>
+                                    <option value="1" {{$user->branch == "1" ? "selected" : "" }}>HO</option>
+                                    <option value="2" {{$user->branch == "2" ? "selected" : "" }}>Linn 1</option>
+                                    <option value="3" {{$user->branch == "3" ? "selected" : "" }}>Linn 2</option>
+                                    <option value="4" {{$user->branch == "4" ? "selected" : "" }}>Linn 3</option>
+                                    <option value="5" {{$user->branch == "5" ? "selected" : "" }}>Gadget Store</option>
+                               </select>
+                                @if ($errors->has('branch'))
+                                    <span class="text-danger">{{ $errors->first('branch') }}</span>
+                                @endif
+                            </div>
+                          </div>
+                          <div class="form-group row">
                               <label for="password" class="col-md-4 col-form-label text-md-right">Role</label>
                               <div class="col-md-6">
                                   {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control')) !!}
