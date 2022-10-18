@@ -14,6 +14,7 @@
        
          <tbody>
             @foreach($qr_list as $key=>$qr)
+            <tr>
                 <td>
                     @if($qr->photo != null)
                     <img src="{{public_path($qr->path.$qr->photo)}}" style="width:100px;height: 100px;">
@@ -21,6 +22,8 @@
                 </td>
                 <td>{{$qr->qr_link}}</td>
                 <td>{{$qr->remark}}</td>
+            </tr>
+                
             @endforeach
          </tbody>
       </table>
