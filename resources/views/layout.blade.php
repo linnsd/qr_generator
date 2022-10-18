@@ -56,9 +56,15 @@
         @guest
             
             @else
+            <a class="nav-link" href="{{ url('qr_create') }}">Home</a>
+
             <a class="nav-link" href="{{ route('users.index') }}">User List</a>
 
             <a class="nav-link" href="{{ route('roles.index') }}">Role List</a>
+
+            <a class="nav-link" href="{{ route('roles.index') }}">QR Generator</a>
+
+            <a class="nav-link" href="{{ route('roles.index') }}">PC Sale</a>
         @endif
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
