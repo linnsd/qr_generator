@@ -33,6 +33,7 @@ Route::get('qr_create', function () {
 	return view('qrcode.create');
 })->middleware("auth");
 
+Route::get('qr_data/{id}', '\App\Http\Controllers\FrontendController@qr_data')->name('qr_data');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -54,7 +55,9 @@ Route::group(['middleware' => 'auth'], function () {
 	//qr detail
 	Route::get('qr_detail/{id}', '\App\Http\Controllers\QRGenerateController@qr_detail')->name('qr_detail');
 
-	Route::get('update_remark', [\App\Http\Controllers\QRGenerateController::class, 'update_remark'])->name('update_remark');
+	// print_qr
+	Route::get('print_qr/{id}', 'App\Http\Controllers\QRGenerateController@print_qr')->name('qr.print_qr');
+
 	Route::get('update_remark', [\App\Http\Controllers\QRGenerateController::class, 'update_remark'])->name('update_remark');
 
 	Route::resource('users', 'App\Http\Controllers\UserController');
