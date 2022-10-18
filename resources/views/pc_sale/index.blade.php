@@ -75,4 +75,14 @@
 <div class="container">
     
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script>
+   $(document).ready(function(){
+        setTimeout(function() {
+            $(".alert").hide();
+        }, 2000);
+    });
+</script>
 @endsection

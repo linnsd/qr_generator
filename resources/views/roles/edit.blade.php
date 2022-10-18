@@ -2,10 +2,10 @@
   
 @section('content')
 <main class="login-form">
-  <div class="cotainer">
+  <div class="container-fluid">
       <div class="row justify-content-center">
-          <div class="col-md-8">
-              <div class="card">
+          <div class="w-100">
+              <div class="card w-100">
                   <div class="card-header">Edit User</div>
                   <div class="card-body">
   
@@ -28,8 +28,9 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <a href="{{route('roles.index')}}" class="btn btn-primary">Back</a>
+                                <button type="submit" class="btn btn-success">Submit</button>
                             </div>
                         </div>
                         {!! Form::close() !!}

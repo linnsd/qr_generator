@@ -2,10 +2,10 @@
   
 @section('content')
 <main class="login-form">
-  <div class="cotainer">
+  <div class="container-fluid">
       <div class="row justify-content-center">
-          <div class="col-md-8">
-              <div class="card">
+          <div class="w-100">
+              <div class="card w-100">
                   <div class="card-header">Create User</div>
                   <div class="card-body">
   
@@ -80,7 +80,8 @@
                         </div> -->
   
                           <div class="col-md-6 offset-md-4">
-                              <button type="submit" class="btn btn-primary">
+                            <a href="{{route('users.index')}}" class="btn btn-primary">Back</a>
+                              <button type="submit" class="btn btn-success">
                                   Create
                               </button>
                           </div>
