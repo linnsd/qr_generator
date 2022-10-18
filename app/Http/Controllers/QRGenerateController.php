@@ -175,4 +175,21 @@ class QRGenerateController extends Controller
     {
         return Excel::download(new QRExport,'qr_list.xlsx');
     }
+
+    public function generate_qr($id)
+    {
+        $photo = 'qrcode'.date("Y-m-d-H-m-s").'.png';
+
+        if (!File::isDirectory($destinationPath)) {
+            File::makeDirectory($destinationPath, 0777, true, true);
+        }
+
+        if (File::exists($destinationPath . 'qrcode.png')) {
+            File::delete($destinationPath . 'qrcode.png');
+        }
+
+            $qrcode = QrCode::size(170)
+                ->format('png')
+                ->generate($request->qr_link, public_path('uploads/pc_sale/'.$photo));
+    }
 }
