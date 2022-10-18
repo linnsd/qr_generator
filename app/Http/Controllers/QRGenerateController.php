@@ -30,6 +30,10 @@ class QRGenerateController extends Controller
         }else{
             $qr_list = $qr_list->where('c_by',auth()->user()->id);
         }
+
+        if ($request->item_name != null) {
+            $qr_list = $qr_list->where('remark','like','%'.$request->item_name.'%');
+        }
         $count=$qr_list->get()->count();
 
         $qr_list = $qr_list->orderBy('created_at','desc')->paginate(10);
