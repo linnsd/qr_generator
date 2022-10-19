@@ -72,8 +72,9 @@
                             <div class="col-md-2">
                                 <input type="text" name="item_name" id="item_name" class="form-control form-group" placeholder="Search Item..." value="{{old('item_name',$item_name)}}">
                             </div>
-                            <div class="col-md-10">
-                                <a class="btn btn-sm btn-warning" style="float: right;" id="export">Export</a>
+                            <div class="col-md-10" align="right">
+                                <a href="{{route('qr.create')}}" class="btn btn-sm btn-success"><i class="fas fa-fw fa-plus"></i>Create</a>&nbsp;
+                                <a class="btn btn-sm btn-warning" id="export">Export</a>
                             </div>
                         </div>
                         
