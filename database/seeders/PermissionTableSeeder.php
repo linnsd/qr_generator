@@ -27,7 +27,17 @@ class PermissionTableSeeder extends Seeder
            'qr-list',
            'qr-download',
            'qr-edit',
-           'qr-delete'
+           'qr-delete',
+           'qr-export',
+           'pc-list',
+           'pc-create',
+           'pc-edit',
+           'pc-show',
+           'pc-qr-generate',
+           'pc-print',
+           'pc-delete',
+           'pc-export',
+
         ];
      
         foreach ($permissions as $permission) {

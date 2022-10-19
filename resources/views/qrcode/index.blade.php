@@ -69,10 +69,10 @@
                         @csrf
                         @method('POST')
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <input type="text" name="item_name" id="item_name" class="form-control form-group" placeholder="Search Item..." value="{{old('item_name',$item_name)}}">
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-10">
                                 <a class="btn btn-sm btn-warning" style="float: right;" id="export">Export</a>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
 <script>
     setTimeout(function() {
         $(".alert").hide();
-    }, 2000);
+    }, 1000);
     $('#alert_modal').click(function(){
             const data_remark = $('#alert_modal').attr("data-remark");
             const qr_id = $('#alert_modal').attr("data-id");

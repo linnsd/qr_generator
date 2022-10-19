@@ -26,8 +26,13 @@ rel="stylesheet">
                     @endif
   
                 <div class="d-flex justify-content-end align-items-center">
+                    @can('pc-export')
                     <a href="" class="btn btn-sm btn-warning text-white mr-1" id="export_btn"><i class="fa fa-fw fa-file-excel"></i> Export</a>
+                    @endcan
+
+                    @can('pc-create')
                     <a href="{{route('pc_sale.create')}}" class="btn btn-success btn-sm" style="color: white;"><i class="fa fa-fw fa-plus"></i>Create</a>
+                    @endcan
                 </div>
 
                 {{-- excel form --}}
@@ -74,19 +79,29 @@ rel="stylesheet">
                             <td>{{$data->u_by}}</td>
                             <td>
                                 <div class="d-flex">
+                                    @can('pc-show')
                                     <a href="{{route('pc_sale.show',$data->id)}}" target="_blank" class="btn btn-sm btn-info mr-1"><i class="fas fa-fw fa-eye"></i></a>
+                                    @endcan
+
+                                    @can('pc-edit')
                                     <a href="{{route('pc_sale.edit',$data->id)}}" class="btn btn-sm btn-primary mr-1"><i class="fas fa-fw fa-edit"></i></a>
+                                    @endcan
 
+                                    @can('pc-qr-generate')
                                     <a href="{{route('qr.generate_qr',$data->id)}}" class="btn btn-sm btn-success mr-1"><i class="fas fa-fw fa-qrcode"></i></a>
+                                    @endcan
 
+                                    @can('pc-print')
                                      <a href="{{route('qr.print_qr',$data->id)}}" target="_blank" class="btn btn-sm btn-secondary mr-1"><i class="fas fa-fw fa-print"></i></a>
+                                     @endcan
 
+                                     @can('pc-delete')
                                     <form action="{{route('pc_sale.destroy',$data->id)}}" method="POST">
                                         @csrf
                                         <button type="submit" onclick="return confirm('Are You Sure You Want To Delete This?')" class="btn btn-sm btn-danger mr-1"><i class="fas fa-fw fa-trash"></i></button>
                                         @method('delete')
                                     </form>
-                                     
+                                     @endcan
                                 </div>
                             </td>
                         </tr>

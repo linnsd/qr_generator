@@ -10,6 +10,14 @@ use App\Models\User;
 
 class PcSaleController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:pc-list|pc-create|pc-edit|pc-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:pc-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:pc-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:pc-delete', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
