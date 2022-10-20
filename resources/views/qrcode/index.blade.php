@@ -80,7 +80,7 @@
                         
                         
                     </form>
-                    
+                    <p>Total - {{$count}}</p>
                 <table class="table table-bordered">
                     <thead class="table-primary">
                      <tr> 
@@ -124,7 +124,6 @@
                     @endforeach
                    </tbody>
                 </table>
-                <p style="text-align: center;">Total - {{$count}}</p>
               @if ($qr_list->hasPages())
                     <div class="pagination-wrapper">
                          {{ $qr_list->links() }}
