@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', [\App\Http\Controllers\FrontendController::class, 'home'])->name('home');
+
 
 Auth::routes();
 
@@ -36,6 +36,8 @@ Route::get('qr_create', function () {
 Route::get('qr_data/{id}', '\App\Http\Controllers\FrontendController@qr_data')->name('qr_data');
 
 Route::group(['middleware' => 'auth'], function () {
+
+	Route::get('/', [\App\Http\Controllers\FrontendController::class, 'home'])->name('home');
 
 	Route::resource('roles', '\App\Http\Controllers\RoleController');
 
