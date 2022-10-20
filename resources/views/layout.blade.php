@@ -49,7 +49,6 @@
     </style>
 </head>
 <body>
-    
 <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
     <div class="container-fluid">
        
@@ -59,13 +58,14 @@
         @guest
             @else
                <div class="d-flex">
-                <a class="nav-link mynav-link text-dark " href="{{ route('users.index') }}">User List</a>
+
+                <a class="nav-link mynav-link text-dark{{ str_starts_with(Request::path(),'users') ? 'active' : ''}}" href="{{ route('users.index') }}">User List</a>
     
-                <a class="nav-link mynav-link text-dark" href="{{ route('roles.index') }}">Role List</a>
+                <a class="nav-link mynav-link text-dark {{ str_starts_with(Request::path(),'roles') ? 'active' : ''}}" href="{{ route('roles.index') }}">Role List</a>
     
-                <a class="nav-link mynav-link text-dark" href="{{ route('qr.index') }}">QR Generator</a>
+                <a class="nav-link mynav-link text-dark {{ str_starts_with(Request::path(),'qr') ? 'active' : ''}}" href="{{ route('qr.index') }}">QR Generator</a>
     
-                <a class="nav-link mynav-link text-dark" href="{{ route('pc_sale.index') }}">PC Sale QR</a>
+                <a class="nav-link mynav-link text-dark  {{ str_starts_with(Request::path(),'pc_sale') ? 'active' : ''}}" href="{{ route('pc_sale.index') }}">PC Sale QR</a>
                </div>
             </div>
         @endif
