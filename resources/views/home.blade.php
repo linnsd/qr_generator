@@ -21,7 +21,7 @@
                 </div>
                 <div class="d-flex flex-column">
                     <h6>Total Users</h6>
-                    <h6 class="text-primary">{{$total_users}}</h6>
+                    <h6 class="text-primary"><a href="{{route('users.index')}}">{{$total_users}}</a></h6>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="d-flex flex-column">
                     <h6>Total QR Generates</h6>
-                    <h6 class="text-primary">{{$total_qr}}</h6>
+                    <h6 class="text-primary"><a href="{{route('qr.index')}}">{{$total_qr}}</a></h6>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="d-flex flex-column">
                     <h6>Total PC Sales </h6>
-                    <h6 class="text-primary">{{$total_pc_sales}}</h6>
+                    <h6 class="text-primary"><a href="{{route('pc_sale.index')}}">{{$total_pc_sales}}</a></h6>
                 </div>
             </div>
         </div>
