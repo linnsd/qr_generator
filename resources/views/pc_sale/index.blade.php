@@ -1,9 +1,10 @@
 @extends('layout')
-  
-@section('content')
-<link id="bsdp-css" href="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker3.min.css"
-rel="stylesheet">
 
+@push('css')
+<link id="bsdp-css" href="{{asset('./css/bootstrap-datepicker3.min.css')}}" rel="stylesheet">
+@endpush
+
+@section('content')
 <div class="">
     @php
         $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';  
@@ -134,27 +135,30 @@ rel="stylesheet">
     
 </div>
 
-
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-<script src="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="{{asset('./js/jquery-3.4.1.slim.min.js')}}"></script>
+<script src="{{asset('./js/bootstrap-datepicker.min.js')}}"></script>
 <script>
-   $(document).ready(function(){
-        setTimeout(function() {
-            $(".alert").hide();
-        }, 2000);
+    $(document).ready(function(){
+        console.log("here");
+         setTimeout(function() {
+             $(".alert").hide();
+         }, 2000);
+ 
+         $(".date").datepicker({
+             format: "dd-mm-yyyy",
+             "setDate": new Date(),
+             "autoclose": true
+         });
+ 
+ 
+         $("#export_btn").click(function(e){
+             e.preventDefault();
+             $("#excel_form").submit();
+         });
+     });
+ 
+ </script>
 
-        $(".date").datepicker({
-            format: "dd-mm-yyyy",
-            "setDate": new Date(),
-            "autoclose": true
-        });
-
-
-        $("#export_btn").click(function(e){
-            e.preventDefault();
-            $("#excel_form").submit();
-        });
-    });
-
-</script>
 @endsection
+
+
