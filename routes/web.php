@@ -66,6 +66,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('qr/destroy/{id}', [\App\Http\Controllers\QRGenerateController::class, 'destroy'])->name('qr.destroy');
 
+	Route::get('download_pc_qr','App\Http\Controllers\QRGenerateController@download_pc_qr')->name('download_pc_qr');
+
+	Route::get('print_pc_qr','App\Http\Controllers\QRGenerateController@print_pc_qr')->name('print_pc_qr');
+
 
 	// PC Sale
 	Route::resource('/pc_sale', '\App\Http\Controllers\PcSaleController');

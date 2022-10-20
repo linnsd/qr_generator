@@ -39,11 +39,11 @@
                             <td>{{ $role->name }}</td>
                             <td>
                                 @can('role-edit')
-                                    <a class="btn btn-sm btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('roles.edit',$role->id) }}"><i class="fa fa-fw fa-edit"></i></a>
                                 @endcan
                                 @can('role-delete')
                                     {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
-                                        {!! Form::submit('Delete', ['class' => 'btn btn-sm btn-danger']) !!}
+                                        {!! Form::submit('Delete', ['class' => 'btn btn-sm btn-danger'])  !!}
                                     {!! Form::close() !!}
                                 @endcan
                             </td>

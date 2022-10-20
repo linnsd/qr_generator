@@ -197,19 +197,42 @@ class QRGenerateController extends Controller
             ->format('png')
             ->generate(URL::to("/").'/qr_data/'.$id, public_path('uploads/pc_sale/'.$photo));
 
-        $strpath = public_path().'/uploads/pc_sale/'.$photo;
-        // dd($strpath);
-        $myFile = str_replace("\\", '/', $strpath);
-        $headers = ['Content-Type: application/*'];
-        $newName = $photo.'.png';
+        $strpath = $photo;
 
-        // return redirect()->route('pc_sale.index')->with('success','success');
-        return response()->download($myFile, $newName, $headers);
+        return view('pc_sale.qr_detail',compact('strpath'));
+
+        // $strpath = public_path().'/uploads/pc_sale/'.$photo;
+        // // dd($strpath);
+        // $myFile = str_replace("\\", '/', $strpath);
+        // $headers = ['Content-Type: application/*'];
+        // $newName = $photo.'.png';
+
+        // // return redirect()->route('pc_sale.index')->with('success','success');
+        // return response()->download($myFile, $newName, $headers);
     }
 
     public function print_qr($id)
     {
         $data = PcSale::find($id);
         return view('pc_sale.print_data', compact('data'));
+    }
+
+    public function download_pc_qr(Request $request)
+    {
+        $strpath = public_path().'/uploads/pc_sale/'.$request->photo_path;
+        // dd($strpath);
+        $myFile = str_replace("\\", '/', $strpath);
+        $headers = ['Content-Type: application/*'];
+        $newName = $request->photo_path;
+
+        return response()->download($myFile, $newName, $headers);
+
+    }
+
+    public function print_pc_qr(Request $request)
+    {
+        $photo_path = '/uploads/pc_sale/'.$request->photo_path;
+
+        return view('pc_sale.pc_qr_print',compact('photo_path'));
     }
 }

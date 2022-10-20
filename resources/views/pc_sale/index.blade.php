@@ -88,7 +88,7 @@ rel="stylesheet">
                                     @endcan
 
                                     @can('pc-qr-generate')
-                                    <a href="{{route('qr.generate_qr',$data->id)}}" class="btn btn-sm btn-success mr-1"><i class="fas fa-fw fa-qrcode"></i></a>
+                                    <a href="{{route('qr.generate_qr',$data->id)}}" class="btn btn-sm btn-success mr-1" target="_blank"><i class="fas fa-fw fa-qrcode"></i></a>
                                     @endcan
 
                                     @can('pc-print')
