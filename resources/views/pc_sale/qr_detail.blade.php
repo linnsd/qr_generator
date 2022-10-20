@@ -14,7 +14,7 @@ rel="stylesheet">
                   <div class="card-header">QR Detail</div>
                   <div class="card-body" align="center">
                         <img src="{{asset('uploads/pc_sale/'.$strpath)}}" style="width:200px;height:200px;">     
-                        <div class="form-group">
+                        <div style="margin-top:20px;">
                           <a href="{{url('download_pc_qr?photo_path='.$strpath,)}}" class="btn btn-sm btn-success"><i class="fas fa-fw fa-download"></i>Download QR</a>
               
                           <a href="{{url('print_pc_qr?photo_path='.$strpath)}}" target="_blank" class="btn btn-sm btn-primary mr-1"><i class="fas fa-fw fa-print"></i>Print</a>
