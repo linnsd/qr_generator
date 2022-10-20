@@ -1,8 +1,8 @@
 @extends('layout')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container" style="height: 90vh">
+    <div class="d-flex flex-column justify-content-center align-items-center h-100">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>

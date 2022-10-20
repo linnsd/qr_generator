@@ -25,6 +25,7 @@ class PcSaleExport implements FromView, ShouldAutoSize
     $keyword = (!empty($_POST['keyword'])) ? $_POST['keyword'] : '';
     $from_date = (!empty($_POST['from_date'])) ? $_POST['from_date'] : '';
     $to_date = (!empty($_POST['to_date'])) ? $_POST['to_date'] : '';
+    $branch = (!empty($_POST['branch'])) ? $_POST['branch'] : '';
 
     $pc_sales = new PcSale();
     $pc_sales = $pc_sales->orderBy('created_at', 'desc');
@@ -34,6 +35,10 @@ class PcSaleExport implements FromView, ShouldAutoSize
         ->orWhere('c_phone', 'like', '%' . $keyword . '%')
         ->orWhere('c_by', 'like', '%' . $keyword . '%')
         ->orWhere('u_by', 'like', '%' . $keyword . '%');
+    }
+
+    if ($branch != "") {
+      $pc_sales = $pc_sales->where('branch', $branch);
     }
 
 
