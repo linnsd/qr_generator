@@ -27,8 +27,9 @@ class PcSaleController extends Controller
     {
         //
         $pc_sales = PcSale::list($request);
+        $count = $pc_sales->count();
         $pc_sales = $pc_sales->paginate(10);
-        return view('pc_sale.index', compact('pc_sales'))->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('pc_sale.index', compact('pc_sales', 'count'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**

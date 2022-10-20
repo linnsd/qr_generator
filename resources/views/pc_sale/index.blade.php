@@ -11,6 +11,7 @@ rel="stylesheet">
         $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';  
         $from_date = isset($_GET['from_date']) ? $_GET['from_date'] : '';
         $to_date = isset($_GET['to_date']) ? $_GET['to_date'] : '';
+        $branch = isset($_GET['branch']) ? $_GET['branch'] : '';
     @endphp
    <div class="container-fluid">
     <div class="row justify-content-center">
@@ -41,6 +42,7 @@ rel="stylesheet">
                     <input type="hidden" name="keyword" value="{{$keyword}}">
                     <input type="hidden" name="from_date" value="{{$from_date}}">
                     <input type="hidden" name="to_date" value="{{$to_date}}">
+                    <input type="hidden" name="branch" value="{{$branch}}">
                 </form>
 
 
@@ -49,10 +51,20 @@ rel="stylesheet">
                         <input type="text" name="keyword" id="keyword" placeholder="keyword" class="form-control col-2 mr-1" value="{{old('keyword',$keyword)}}">
                         <input type="text" id="from_date" class="form-control date col-1 mr-1" name="from_date" value="{{old('from_date',$from_date)}}" placeholder="From Date">
                         <input type="text" id="to_date" class="form-control date col-1 mr-1" name="to_date" value="{{old('from_date',$to_date)}}" placeholder="To Date">
+                        <select name="branch" class="form-control col-1 mr-md-1">
+                            <option value="" selected>--Branch--</option>
+                            <option value="HO" {{$branch == "HO" ? "selected" : ""}}>HO</option>
+                            <option value="Linn 1" {{$branch == "Linn 1" ? "selected" : ""}}>Linn 1</option>
+                            <option value="Linn 2" {{$branch == "Linn 2" ? "selected" : ""}}>Linn 2</option>
+                            <option value="Linn 3" {{$branch == "Linn 3" ? "selected" : ""}}>Linn 3</option>
+                            <option value="Gadget Store" {{$branch == "Gadget Store" ? "selected" : ""}}>Gadget Store</option>
+                        </select>
+                       
                         <button type="submit" class="btn btn-primary">Search</button>
                     </div>
                 </form>
 
+                <div class="text text-muted my-2">Total - {{$count}}</div>
                 <div class="table-responsive" style="font-size:14px;margin-top: 10px;">
                 <table class="table table-bordered">
                     <thead class="table-primary">

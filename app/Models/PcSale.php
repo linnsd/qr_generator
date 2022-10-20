@@ -24,6 +24,10 @@ class PcSale extends Model
                 ->orWhere('u_by', 'like', '%' . $request->keyword . '%');
         }
 
+        if ($request->branch != "") {
+            $pc_sales = $pc_sales->where('branch', $request->branch);
+        }
+
 
 
         if ($request->from_date != "" and $request->to_date != "") {

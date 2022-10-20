@@ -43,28 +43,31 @@
             margin-left: 0;
             margin-right: 0;
         }
+        .active {
+            color:#3498DB!important;
+        }
     </style>
 </head>
 <body>
     
 <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
-    <div class="container">
+    <div class="container-fluid">
        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         @guest
-            
             @else
-            <a class="nav-link" href="{{ url('qr_create') }}">Home</a>
-
-            <a class="nav-link" href="{{ route('users.index') }}">User List</a>
-
-            <a class="nav-link" href="{{ route('roles.index') }}">Role List</a>
-
-            <a class="nav-link" href="{{ route('qr.index') }}">QR List</a>
-
-            <a class="nav-link" href="{{ route('pc_sale.index') }}">PC Sale</a>
+               <div class="d-flex">
+                <a class="nav-link mynav-link text-dark " href="{{ route('users.index') }}">User List</a>
+    
+                <a class="nav-link mynav-link text-dark" href="{{ route('roles.index') }}">Role List</a>
+    
+                <a class="nav-link mynav-link text-dark" href="{{ route('qr.index') }}">QR Generator</a>
+    
+                <a class="nav-link mynav-link text-dark" href="{{ route('pc_sale.index') }}">PC Sale QR</a>
+               </div>
+            </div>
         @endif
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
