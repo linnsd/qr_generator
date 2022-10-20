@@ -3,6 +3,8 @@
 <head>
     <title>QR Generator</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
     <style type="text/css">
         @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
   
@@ -58,6 +60,8 @@
         @guest
             @else
                <div class="d-flex">
+
+                <a class="nav-link mynav-link text-dark{{ Request::path() == "/" ? "active" : "" }}" href="{{ route('home') }}">Home</a>
 
                 <a class="nav-link mynav-link text-dark{{ str_starts_with(Request::path(),'users') ? 'active' : ''}}" href="{{ route('users.index') }}">User List</a>
     
