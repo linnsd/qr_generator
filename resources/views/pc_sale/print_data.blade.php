@@ -19,8 +19,8 @@
             }
             table {
               /*margin-top: 1rem;*/
-              width: 98%;
-              margin-left: 6px;
+              width: 100%;
+              /*margin-left: 6px;*/
             }
             table, th, td {
               border: 1px solid black;
@@ -62,9 +62,9 @@
       </style>
    </head>
    <body>
-      <!-- <div class="wrapper" > -->
+      <div class="wrapper" >
         <div class="watermark">
-          <h4 style="margin-top:10px;margin-left: 10px;margin-bottom: 2px;">Linn IT Solution Co.,Ltd</h4>
+          <h4 style="margin-left: 10px;margin-bottom: 2px;">Linn IT Solution Co.,Ltd</h4>
     <table>
         <thead>
           <th>Linn Computer</th>
@@ -152,6 +152,7 @@
         </tbody>
     </table>
       </div>
+    </div>
       <script>
          window.print();
       </script>
