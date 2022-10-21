@@ -17,7 +17,6 @@
             body {
               width: 100vw;
               height: 100vh;
-              padding: 1rem;
               display: flex;
               flex-direction: column;
               justify-content: center;
@@ -69,7 +68,7 @@
         }
       </style>
    </head>
-      <img src="{{asset($photo_path)}}" style="width:600px;height:600px;">
+      <img src="{{asset($photo_path)}}" style="width:700px;height:700px;">
       <script>
          window.print();
       </script>
