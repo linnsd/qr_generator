@@ -18,15 +18,16 @@
               padding: 1rem;
             }
             table {
-              margin-top: 1rem;
-              width: 100%;
+              /*margin-top: 1rem;*/
+              width: 98%;
+              margin-left: 6px;
             }
             table, th, td {
               border: 1px solid black;
               border-collapse: collapse;
             }
             th, td {
-              padding: 0.4rem;
+              padding: 0.5rem;
             }
             .bg-dark {
               background-color: #000;
@@ -63,7 +64,7 @@
    <body>
       <!-- <div class="wrapper" > -->
         <div class="watermark">
-          <h4>Linn IT Solution Co.,Ltd</h4>
+          <h4 style="margin-top:10px;margin-left: 10px;margin-bottom: 2px;">Linn IT Solution Co.,Ltd</h4>
     <table>
         <thead>
           <th>Linn Computer</th>
