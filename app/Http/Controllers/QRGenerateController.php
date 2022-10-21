@@ -193,7 +193,7 @@ class QRGenerateController extends Controller
         }
 
         // dd();
-        $qrcode = QrCode::size(250)
+        $qrcode = QrCode::size(500)
             ->format('png')
             ->generate(URL::to("/").'/qr_data/'.$id, public_path('uploads/pc_sale/'.$photo));
 
