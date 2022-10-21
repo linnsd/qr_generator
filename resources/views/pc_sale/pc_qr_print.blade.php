@@ -14,6 +14,14 @@
               box-sizing: border-box;
               font-family: 'Roboto', sans-serif;
             }
+            body {
+              width: 100vw;
+              height: 100vh;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            }
             .wrapper {
               padding: 1rem;
             }
@@ -60,7 +68,6 @@
         }
       </style>
    </head>
-    <body>
       <img src="{{asset($photo_path)}}" style="width:600px;height:600px;">
       <script>
          window.print();
