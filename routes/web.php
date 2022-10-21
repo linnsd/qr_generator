@@ -77,4 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
 	// PC Sale
 	Route::resource('/pc_sale', '\App\Http\Controllers\PcSaleController');
 	Route::post('/pc_sale/export', '\App\Http\Controllers\PcSaleController@export')->name('pc_sale.export');
+
+	//category
+	Route::resource('categories','App\Http\Controllers\CategoryController');
 });

@@ -70,6 +70,11 @@
                 <a class="nav-link mynav-link text-dark {{ str_starts_with(Request::path(),'qr') ? 'active' : ''}}" href="{{ route('qr.index') }}">QR Generator</a>
     
                 <a class="nav-link mynav-link text-dark  {{ str_starts_with(Request::path(),'pc_sale') ? 'active' : ''}}" href="{{ route('pc_sale.index') }}">PC Sale QR</a>
+
+                <a class="nav-link mynav-link text-dark  {{ str_starts_with(Request::path(),'categories') ? 'active' : ''}}" href="{{ route('categories.index') }}">Category</a>
+
+               </div>
+
                </div>
             </div>
         @endif
