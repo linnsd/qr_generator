@@ -78,18 +78,18 @@
          </tr> -->
          <tr>
            <th colspan="3" class="left">
-             Customer Name - {{$data->c_name}}
+             Customer Name : {{$data->c_name}}
            </th>
          </tr>
          <tr>
            <th colspan="3" class="left">
-             Customer Phone - {{$data->c_phone}}
+             Customer Phone : {{$data->c_phone}}
            </th>
          </tr>
 
          <tr>
            <th colspan="3" class="left">
-             Date - {{date('d-m-Y',strtotime($data->date))}}
+             Date : {{date('d-m-Y',strtotime($data->date))}}
            </th>
          </tr>
 

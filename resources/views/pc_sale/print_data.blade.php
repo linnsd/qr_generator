@@ -76,13 +76,13 @@
           {{-- 1 --}}
          <tr>
           <th colspan="2" class="left">
-            Customer Name - {{$data->c_name}}
+            Customer Name : {{$data->c_name}}
           </th>
-          <th class="left">Date - {{date('d-m-Y',strtotime($data->date))}}</th>
+          <th class="left">Date : {{date('d-m-Y',strtotime($data->date))}}</th>
          </tr>
          {{-- 2 --}}
          <tr>
-          <th colspan="3" class="left">Customer Phone - {{$data->c_phone}}</th>
+          <th colspan="3" class="left">Customer Phone : {{$data->c_phone}}</th>
          </tr>
          {{-- CPU --}}
          <tr>
