@@ -8,6 +8,7 @@
               <th>QR Code</th>
                <th>QR Link</th>
                <th>Item Name</th>
+               <th>Category</th>
             </tr>
           
          </thead>
@@ -22,6 +23,7 @@
                 </td>
                 <td>{{$qr->qr_link}}</td>
                 <td>{{$qr->remark}}</td>
+                <td>{{$qr->category_name}}</td>
             </tr>
                 
             @endforeach

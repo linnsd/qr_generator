@@ -29,10 +29,15 @@
 
                         <div class="col-md-5">
                             <input type="text" class="form-control form-group" id="remark" name="remark" required placeholder="Item Name">
-
+                            <select name="category" id="category" class="form-control form-group">
+                                <option value="">--Category--</option>
+                                @foreach ($categories as $cat)
+                                    <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                @endforeach
+                            </select>
                             <input type="text" class="form-control" id="qr_link" name="qr_link" required placeholder="Website Link">
                         </div>
-                        <div class="col-md-1" style="margin-top:60px;">
+                        <div class="col-md-12 form-group my-2">
                             <button type="submit" class="btn btn-sm btn-success">Generate</button>
                         </div>
                     </div>

@@ -9,6 +9,7 @@
 
 <?php
     $item_name = isset($_GET['item_name']) ? $_GET['item_name'] : '';
+    $category = isset($_GET['category']) ? $_GET['category'] : '';
 ?>
 
 <div class="container-fluid">
@@ -51,7 +52,9 @@
             <form action="{{route('qr_export')}}" id="qr_export_form" method="post">
                 @csrf
                 @method('POST')
+                
                 <input type="hidden" name="item_name" value="{{$item_name}}">
+                <input type="hidden" name="category" value="{{$category}}">
             </form>
             <div class="card w-100">
                 <div class="card-header">QR Code List</div>
@@ -65,29 +68,36 @@
   
                     <div class="table-responsive" style="font-size:14px;">
                     <a href="{{url('/qr_create')}}" class="btn btn-primary btn-sm form-group" style="color: white;">Back</a>
-                    <form action="{{route('qr.index')}}">
+                    <form action="{{route('qr.index')}}" id="qr_form">
                         @csrf
                         @method('POST')
                         <div class="row">
                             <div class="col-md-2">
                                 <input type="text" name="item_name" id="item_name" class="form-control form-group" placeholder="Search Item..." value="{{old('item_name',$item_name)}}">
                             </div>
-                            <div class="col-md-10" align="right">
+                            <div class="col-md-2">
+                                <select name="category" id="category" class="form-control">
+                                    <option value="">Select</option>
+                                    @foreach ($categories as $cat)
+                                    <option value="{{$cat->id}}" {{$category == $cat->id ? "selected" : ""}}>{{$cat->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-8" align="right">
                                 <a href="{{route('qr.create')}}" class="btn btn-sm btn-success"><i class="fas fa-fw fa-plus"></i>Create</a>&nbsp;
                                 <a class="btn btn-sm btn-warning" id="export">Export</a>
                             </div>
                         </div>
-                        
-                        
                     </form>
                     <p>Total - {{$count}}</p>
                 <table class="table table-bordered">
                     <thead class="table-primary">
                      <tr> 
-                       <th>No</th>
+                         <th>No</th>
                          <th>QR Code</th>
                          <th>QR Link</th>
                          <th>Item Name</th>
+                         <th>Category</th>
                          <th>Action</th>
                      </tr>
                    </thead>
@@ -100,6 +110,7 @@
                         </td>
                         <td>{{$qr->qr_link}}</td>
                         <td>{{$qr->remark}}</td>
+                        <td>{{ $qr->category_name }}</td>
                         <td>
                             <form action="{{route('qr.download')}}" method="post">
                                    @csrf
@@ -159,6 +170,10 @@
     });
     $('#export').click(function(){
         $('#qr_export_form').submit();
+    });
+
+    $("#category").on("change",function(){
+        $("#qr_form").submit();
     });
 </script>
 @endpush

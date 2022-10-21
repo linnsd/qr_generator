@@ -13,7 +13,7 @@
     <h3 class="text text-muted"></h3>
    <div class="d-flex justify-content-center mt-5">
     {{-- total users --}}
-    <div class="col-2">
+    <div class="col-3">
         <div class="card p-3">
             <div class="d-flex justify-content-around align-items-center">
                 <div class="icon">
@@ -28,7 +28,7 @@
     </div>
 
      {{-- total users --}}
-     <div class="col-2">
+     <div class="col-3">
         <div class="card p-3">
             <div class="d-flex justify-content-around align-items-center">
                 <div class="icon">
@@ -43,7 +43,7 @@
     </div>
 
      {{-- total users --}}
-     <div class="col-2">
+     <div class="col-3">
         <div class="card p-3">
             <div class="d-flex justify-content-around align-items-center">
                 <div class="icon">

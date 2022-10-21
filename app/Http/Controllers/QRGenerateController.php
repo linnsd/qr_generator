@@ -8,16 +8,18 @@ use Illuminate\Http\Request;
 use QrCode;
 use File;
 use App\Exports\QRExport;
+use App\Models\Category;
 use Maatwebsite\Excel\Facades\Excel;
 use URL;
+
 class QRGenerateController extends Controller
 {
     function __construct()
     {
-         $this->middleware('permission:qr-list|qr-create|qr-edit|qr-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:qr-create', ['only' => ['create','store']]);
-         $this->middleware('permission:qr-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:qr-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:qr-list|qr-create|qr-edit|qr-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:qr-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:qr-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:qr-delete', ['only' => ['destroy']]);
     }
 
     /**
@@ -29,20 +31,29 @@ class QRGenerateController extends Controller
     {
         $qr_list = new QRGenerate();
 
+        $qr_list = $qr_list->leftjoin('categories', 'q_r_generates.category_id', '=', 'categories.id')
+            ->select('q_r_generates.*', 'categories.name AS category_name');
+
         if (auth()->user()->name == "Admin") {
             $qr_list = $qr_list;
-        }else{
-            $qr_list = $qr_list->where('c_by',auth()->user()->id);
+        } else {
+            $qr_list = $qr_list->where('c_by', auth()->user()->id);
         }
 
         if ($request->item_name != null) {
-            $qr_list = $qr_list->where('remark','like','%'.$request->item_name.'%');
+            $qr_list = $qr_list->where('remark', 'like', '%' . $request->item_name . '%');
         }
-        $count=$qr_list->get()->count();
 
-        $qr_list = $qr_list->orderBy('created_at','desc')->paginate(10);
-      
-        return view('qrcode.index',compact('count','qr_list'))->with('i', (request()->input('page', 1) - 1) * 10);
+        if ($request->category != null) {
+            $qr_list = $qr_list->where('category_id', $request->category);
+        }
+
+        $count = $qr_list->get()->count();
+
+        $qr_list = $qr_list->orderBy('created_at', 'desc')->paginate(10);
+        $categories = Category::where('status', 1)->get();
+
+        return view('qrcode.index', compact('count', 'qr_list', 'categories'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -53,7 +64,8 @@ class QRGenerateController extends Controller
     public function create()
     {
         $qr_data = null;
-        return view('qrcode.create',compact('qr_data'));
+        $categories = Category::where('status', 1)->get();
+        return view('qrcode.create', compact('qr_data', 'categories'));
     }
 
     /**
@@ -65,16 +77,17 @@ class QRGenerateController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $qr_count = QRGenerate::where('qr_link',$request->qr_link)->get()->count();
+        $qr_count = QRGenerate::where('qr_link', $request->qr_link)->get()->count();
         // dd($qr_count);
         if ($qr_count == 0) {
-            $photo = 'qrcode'.date("Y-m-d-H-m-s").'.png';
+            $photo = 'qrcode' . date("Y-m-d-H-m-s") . '.png';
             $qr_generate = QRGenerate::create([
-                'path'=>'/uploads/qrcode/',
-                'photo'=>$photo,
-                'qr_link'=>$request->qr_link,
-                'remark'=>$request->remark,
-                'c_by'=>auth()->user()->id
+                'path' => '/uploads/qrcode/',
+                'photo' => $photo,
+                'qr_link' => $request->qr_link,
+                'category' => $request->category,
+                'remark' => $request->remark,
+                'c_by' => auth()->user()->id
             ]);
 
             // $path = $member->path;
@@ -91,7 +104,7 @@ class QRGenerateController extends Controller
 
             $qrcode = QrCode::size(170)
                 ->format('png')
-                ->generate($request->qr_link, public_path('uploads/qrcode/'.$photo));
+                ->generate($request->qr_link, public_path('uploads/qrcode/' . $photo));
 
             // dd($qrcode);
 
@@ -99,12 +112,12 @@ class QRGenerateController extends Controller
             //     ->with('success', 'QrCode generate  success!.');
 
             $qr_data = QRGenerate::find($qr_generate->id);
-        }else{
-            $qr_data = QRGenerate::where('qr_link',$request->qr_link)->first();
+        } else {
+            $qr_data = QRGenerate::where('qr_link', $request->qr_link)->first();
         }
-        
 
-        return view('qrcode.create',compact('qr_data'));
+
+        return view('qrcode.create', compact('qr_data'));
     }
 
     /**
@@ -140,9 +153,9 @@ class QRGenerateController extends Controller
     {
         // dd($request->all());
         $data = QRGenerate::find($request->qr_id)->update([
-            'remark'=>$request->remark
+            'remark' => $request->remark
         ]);
-        return redirect()->route('qr.index')->with('message','success');
+        return redirect()->route('qr.index')->with('message', 'success');
     }
 
     /**
@@ -155,19 +168,18 @@ class QRGenerateController extends Controller
     {
         // dd($id);
         $qr_data = QRGenerate::find($id)->delete();
-        return redirect()->route('qr.index')->with('message','success');
-
+        return redirect()->route('qr.index')->with('message', 'success');
     }
 
     public function qr_download(Request $request)
     {
         // dd($request->all());
 
-        $strpath = public_path().$request->qr_path.$request->qr_photo;
+        $strpath = public_path() . $request->qr_path . $request->qr_photo;
         // dd($strpath);
         $myFile = str_replace("\\", '/', $strpath);
         $headers = ['Content-Type: application/*'];
-        $newName = $request->qr_photo.'.png';
+        $newName = $request->qr_photo . '.png';
 
 
         return response()->download($myFile, $newName, $headers);
@@ -175,12 +187,12 @@ class QRGenerateController extends Controller
 
     public function qr_export()
     {
-        return Excel::download(new QRExport,'qr_list.xlsx');
+        return Excel::download(new QRExport, 'qr_list.xlsx');
     }
 
     public function generate_qr($id)
     {
-        $photo = 'qrcode'.date("Y-m-d-H-m-s").'.png';
+        $photo = 'qrcode' . date("Y-m-d-H-m-s") . '.png';
 
         $destinationPath = public_path() . '/uploads/pc_sale/';
 
@@ -195,11 +207,11 @@ class QRGenerateController extends Controller
         // dd();
         $qrcode = QrCode::size(500)
             ->format('png')
-            ->generate(URL::to("/").'/qr_data/'.$id, public_path('uploads/pc_sale/'.$photo));
+            ->generate(URL::to("/") . '/qr_data/' . $id, public_path('uploads/pc_sale/' . $photo));
 
         $strpath = $photo;
 
-        return view('pc_sale.qr_detail',compact('strpath'));
+        return view('pc_sale.qr_detail', compact('strpath'));
 
         // $strpath = public_path().'/uploads/pc_sale/'.$photo;
         // // dd($strpath);
@@ -219,27 +231,26 @@ class QRGenerateController extends Controller
 
     public function download_pc_qr(Request $request)
     {
-        $strpath = public_path().'/uploads/pc_sale/'.$request->photo_path;
+        $strpath = public_path() . '/uploads/pc_sale/' . $request->photo_path;
         // dd($strpath);
         $myFile = str_replace("\\", '/', $strpath);
         $headers = ['Content-Type: application/*'];
         $newName = $request->photo_path;
 
         return response()->download($myFile, $newName, $headers);
-
     }
 
     public function print_pc_qr(Request $request)
     {
-        $photo_path = '/uploads/pc_sale/'.$request->photo_path;
+        $photo_path = '/uploads/pc_sale/' . $request->photo_path;
 
-        return view('pc_sale.pc_qr_print',compact('photo_path'));
+        return view('pc_sale.pc_qr_print', compact('photo_path'));
     }
 
     public function print_all_qr(Request $request)
     {
-        $photo_path = '/uploads/qrcode/'.$request->photo_path;
+        $photo_path = '/uploads/qrcode/' . $request->photo_path;
 
-        return view('pc_sale.pc_qr_print',compact('photo_path'));
+        return view('pc_sale.pc_qr_print', compact('photo_path'));
     }
 }
