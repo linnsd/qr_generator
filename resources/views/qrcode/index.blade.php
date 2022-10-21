@@ -40,6 +40,7 @@
                         @csrf
                         @method('POST')
                         <div class="row">
+
                             <div class="col-md-2">
                                 <input type="text" name="item_name" id="item_name" class="form-control form-group" placeholder="Search Item..." value="{{old('item_name',$item_name)}}">
                             </div>
@@ -63,7 +64,7 @@
                      <tr> 
                          <th>No</th>
                          <th>QR Code</th>
-                         <th>QR Link</th>
+                         <!-- <th>QR Link</th> -->
                          <th>Item Name</th>
                          <th>Category</th>
                          <th>Action</th>
@@ -75,9 +76,10 @@
                     <div class="modal" id="myModal{{$qr->id}}">
                         <div class="modal-dialog">
                           <div class="modal-content">
-          
+                                
                             <!-- Modal Header -->
                             <div class="modal-header">
+
                               <h4 class="modal-title">Update Item Name</h4>
                               <button type="button" class="btn btn-sm" data-bs-dismiss="modal"><i class="fa fa-window-close"></i></button>
                             </div>
@@ -86,6 +88,8 @@
                             <div class="modal-body">
                               <form action="{{ route('update_remark',$qr->id) }}" method="POST" accept-charset="utf-8" class="form-horizontal">
                                     @csrf
+                                    <!-- <p class="text text-muted">{{$qr->qr_link}}</p> -->
+                                    <input type="text" name="" value="{{$qr->qr_link}}" class="form-control form-group" readonly>
                                   <input type="text" name="remark" id="remark" class="form-control form-group" value="{{$qr->remark}}" placeholder="Item Name">
                                   <select name="category" class="form-control form-group">
                                       <option value="">Select</option>
@@ -116,7 +120,7 @@
                         <td>
                             <img src="{{asset($qr->path.$qr->photo)}}" style="width:100px;height: 100px;">
                         </td>
-                        <td>{{$qr->qr_link}}</td>
+                        <!-- <td>{{$qr->qr_link}}</td> -->
                         <td>{{$qr->remark}}</td>
                         <td>{{ $qr->category_name }}</td>
                         <td>
