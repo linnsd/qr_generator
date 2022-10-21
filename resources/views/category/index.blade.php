@@ -29,8 +29,7 @@
                     @endif
   
                     <div class="table-responsive" style="font-size:14px;">
-                    <a href="{{url('/categories')}}" class="btn btn-primary btn-sm form-group" style="color: white;">Back</a>
-                    
+                  
                     <p>Total - {{$count}}</p>
                     <table class="table table-bordered">
                         <thead class="table-primary">
