@@ -129,13 +129,13 @@
                                 </button>
                                 @endcan
 
-                                <a href="{{url('print_all_qr?photo_path='.$qr->photo)}}" target="_blank" class="btn btn-sm btn-secondary mr-1"><i class="fas fa-fw fa-print"></i>Print</a>
+                                <a href="{{url('print_all_qr?photo_path='.$qr->photo)}}" target="_blank" class="btn btn-sm btn-secondary mr-1"><i class="fas fa-fw fa-print"></i></a>
 
                                 @can('qr-download')
                                <input type="hidden" name="qr_path" value="{{$qr->path}}">
                                <input type="hidden" name="qr_photo" value="{{$qr->photo}}">
                                 <button class="btn btn-success btn-sm" type="submit">
-                                    Download QR
+                                    <i class="fas fa-fw fa-download"></i>
                                 </button>
                                 @endcan 
 
@@ -175,7 +175,7 @@
             // const qr_id = $('#alert_modal').attr("data-id");
             // $('#remark').val(data_remark);
             // $('#qr_id').val(qr_id);
-            
+
             $(`#myModal${data.id}`).modal('show');
         });
     });
