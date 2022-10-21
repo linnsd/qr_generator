@@ -171,10 +171,11 @@
 
     qr_list.data.forEach( data => {
         $(`#alert_modal${data.id}`).click(function(){
-            const data_remark = $('#alert_modal').attr("data-remark");
-            const qr_id = $('#alert_modal').attr("data-id");
-            $('#remark').val(data_remark);
-            $('#qr_id').val(qr_id);
+            // const data_remark = $('#alert_modal').attr("data-remark");
+            // const qr_id = $('#alert_modal').attr("data-id");
+            // $('#remark').val(data_remark);
+            // $('#qr_id').val(qr_id);
+            
             $(`#myModal${data.id}`).modal('show');
         });
     });
