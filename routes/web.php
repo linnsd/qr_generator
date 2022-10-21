@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth'], function () {
 	// print_qr
 	Route::get('print_qr/{id}', 'App\Http\Controllers\QRGenerateController@print_qr')->name('qr.print_qr');
 
-	Route::get('update_remark', [\App\Http\Controllers\QRGenerateController::class, 'update_remark'])->name('update_remark');
+	Route::post('update_remark/{id}', [\App\Http\Controllers\QRGenerateController::class, 'update_remark'])->name('update_remark');
 
 	Route::resource('users', 'App\Http\Controllers\UserController');
 
@@ -79,7 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/pc_sale/export', '\App\Http\Controllers\PcSaleController@export')->name('pc_sale.export');
 
 	//category
-	Route::resource('categories','App\Http\Controllers\CategoryController');
+	Route::resource('categories', 'App\Http\Controllers\CategoryController');
 
-	Route::get('change_category_status','App\Http\Controllers\CategoryController@change_category_status')->name('change_category_status');
+	Route::get('change_category_status', 'App\Http\Controllers\CategoryController@change_category_status')->name('change_category_status');
 });

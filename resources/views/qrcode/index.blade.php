@@ -16,39 +16,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12" style="margin-top:10px;">
             <!-- The Modal -->
-            <div class="modal" id="myModal">
-              <div class="modal-dialog">
-                <div class="modal-content">
-
-                  <!-- Modal Header -->
-                  <div class="modal-header">
-                    <h4 class="modal-title">Update Item Name</h4>
-                    <button type="button" class="btn btn-sm" data-bs-dismiss="modal"><i class="fa fa-window-close"></i></button>
-                  </div>
-
-                  <!-- Modal body -->
-                  <div class="modal-body">
-                    <form action="{{ route('update_remark') }}" method="get" accept-charset="utf-8" class="form-horizontal">
-                        <input type="text" name="remark" id="remark" class="form-control form-group" placeholder="Item Name">
-                        <input type="hidden" name="qr_id" id="qr_id">
-                        <div class="row form-group">
-                            <div class="col-md-4"></div>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CANCEL</button>&nbsp;
-                            <button type="submit" class="btn btn-success">UPDATE</button>
-                        </div>
-                    </form>
-
-                  </div>
-
-                  <!-- Modal footer -->
-                 <!--  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                  </div> -->
-
-                </div>
-              </div>
-            </div>
-
+         
             <form action="{{route('qr_export')}}" id="qr_export_form" method="post">
                 @csrf
                 @method('POST')
@@ -103,6 +71,46 @@
                    </thead>
                    <tbody>
                     @foreach($qr_list as $key=>$qr)
+                    {{-- Modal --}}
+                    <div class="modal" id="myModal{{$qr->id}}">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+          
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                              <h4 class="modal-title">Update Item Name</h4>
+                              <button type="button" class="btn btn-sm" data-bs-dismiss="modal"><i class="fa fa-window-close"></i></button>
+                            </div>
+          
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                              <form action="{{ route('update_remark',$qr->id) }}" method="POST" accept-charset="utf-8" class="form-horizontal">
+                                    @csrf
+                                  <input type="text" name="remark" id="remark" class="form-control form-group" value="{{$qr->remark}}" placeholder="Item Name">
+                                  <select name="category" class="form-control form-group">
+                                      <option value="">Select</option>
+                                      @foreach ($categories as $cat)
+                                      <option value="{{$cat->id}}" {{$qr->category_id == $cat->id ? "selected" : ""}}>{{$cat->name}}</option>
+                                      @endforeach
+                                  </select>
+                                  <div class="row form-group">
+                                      <div class="col-md-4"></div>
+                                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CANCEL</button>&nbsp;
+                                      <button type="submit" class="btn btn-success">UPDATE</button>
+                                  </div>
+                              </form>
+          
+                            </div>
+          
+                            <!-- Modal footer -->
+                           <!--  <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div> -->
+          
+                          </div>
+                        </div>
+                      </div>
+          
                     <tr>
                         <td>{{++$i}}</td>
                         <td>
@@ -116,7 +124,7 @@
                                    @csrf
                                    @method('Post')
                                 @can('qr-edit')
-                               <button id="alert_modal" type="button" class="btn btn-sm btn-primary"  data-remark="{{$qr->remark}}" data-id="{{$qr->id}}">
+                               <button id="alert_modal{{$qr->id}}" type="button" class="btn btn-sm btn-primary"  data-remark="{{$qr->remark}}" data-id="{{$qr->id}}">
                                   <i class="fa fa-fw fa-edit"></i>
                                 </button>
                                 @endcan
@@ -157,13 +165,19 @@
     setTimeout(function() {
         $(".alert").hide();
     }, 1000);
-    $('#alert_modal').click(function(){
+   
+    let qr_list = @json($qr_list);
+    // console.log(qr_list.data);
+
+    qr_list.data.forEach( data => {
+        $(`#alert_modal${data.id}`).click(function(){
             const data_remark = $('#alert_modal').attr("data-remark");
             const qr_id = $('#alert_modal').attr("data-id");
             $('#remark').val(data_remark);
             $('#qr_id').val(qr_id);
-            $('#myModal').modal('show');
+            $(`#myModal${data.id}`).modal('show');
         });
+    });
 
     $('#item_name').change(function(){
         this.form().submit();
