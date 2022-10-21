@@ -61,7 +61,7 @@
       </style>
    </head>
     <body>
-      <img src="{{asset($photo_path)}}" style="width:200px;height:200px;">
+      <img src="{{asset($photo_path)}}" style="width:500px;height:500px;">
       
       <script>
          window.print();
