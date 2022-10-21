@@ -116,8 +116,9 @@ class QRGenerateController extends Controller
             $qr_data = QRGenerate::where('qr_link', $request->qr_link)->first();
         }
 
+        $categories = Category::where('status', 1)->get();
 
-        return view('qrcode.create', compact('qr_data'));
+        return view('qrcode.create', compact('qr_data','categories'));
     }
 
     /**
