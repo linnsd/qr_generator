@@ -235,4 +235,11 @@ class QRGenerateController extends Controller
 
         return view('pc_sale.pc_qr_print',compact('photo_path'));
     }
+
+    public function print_all_qr(Request $request)
+    {
+        $photo_path = '/uploads/qrcode/'.$request->photo_path;
+
+        return view('pc_sale.pc_qr_print',compact('photo_path'));
+    }
 }

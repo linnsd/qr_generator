@@ -72,6 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('print_pc_qr', 'App\Http\Controllers\QRGenerateController@print_pc_qr')->name('print_pc_qr');
 
+	Route::get('print_all_qr', 'App\Http\Controllers\QRGenerateController@print_all_qr')->name('print_all_qr');
 
 	// PC Sale
 	Route::resource('/pc_sale', '\App\Http\Controllers\PcSaleController');

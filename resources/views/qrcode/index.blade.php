@@ -110,13 +110,16 @@
                                 </button>
                                 @endcan
 
+                                <a href="{{url('print_all_qr?photo_path='.$qr->photo)}}" target="_blank" class="btn btn-sm btn-secondary mr-1"><i class="fas fa-fw fa-print"></i>Print</a>
+
                                 @can('qr-download')
                                <input type="hidden" name="qr_path" value="{{$qr->path}}">
                                <input type="hidden" name="qr_photo" value="{{$qr->photo}}">
                                 <button class="btn btn-success btn-sm" type="submit">
                                     Download QR
                                 </button>
-                                @endcan
+                                @endcan 
+
                                 <!-- <a class="btn btn-sm btn-danger btn-sm" onclick="return confirm('Are you sure?')" href="{{route('qr.destroy',$qr->id)}}">Delete</a> -->
                             </form>
                         </td>
