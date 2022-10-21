@@ -152,7 +152,8 @@ class QRGenerateController extends Controller
     public function update_remark(Request $request, $id)
     {
         $data = QRGenerate::find($id)->update([
-            'remark' => $request->remark
+            'remark' => $request->remark,
+            'category' => $request->category,
         ]);
         return redirect()->route('qr.index')->with('message', 'success');
     }
