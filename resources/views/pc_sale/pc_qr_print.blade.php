@@ -17,17 +17,11 @@
             body {
               width: 100vw;
               height: 100vh;
-/*              display: flex;
+              display: flex;
               flex-direction: column;
               justify-content: center;
-              align-items: center;*/
+              align-items: center;
               position: relative;
-            }
-            img {
-              position: absolute;
-              top: 20%;
-              left: 2%;
-
             }
             .wrapper {
               padding: 1rem;
