@@ -21,6 +21,7 @@
               /*margin-top: 1rem;*/
               width: 100%;
               /*margin-left: 6px;*/
+              margin-right: 2px;
             }
             table, th, td {
               border: 1px solid black;
@@ -36,15 +37,15 @@
             .left {
               text-align: left;
             }
-         @page {
-         size:A5;
-         margin-left: 0px;
-         margin-right: 0px;
-         margin-top: 0px;
-         margin-bottom: 0px;
-         margin: 0;
-         -webkit-print-color-adjust: exact;
-         }
+           @page {
+             size:A5;
+             margin-left: 0px;
+             margin-right: 0px;
+             margin-top: 0px;
+             margin-bottom: 0px;
+             margin: 0;
+             -webkit-print-color-adjust: exact;
+           }
          .watermark {
             visibility: visible;
             /*position: absolute;*/
@@ -64,7 +65,7 @@
    <body>
       <div class="wrapper" >
         <div class="watermark">
-          <h4 style="margin-left: 10px;margin-bottom: 2px;">Linn IT Solution Co.,Ltd</h4>
+          <h4 style="margin-bottom: 2px;">Linn IT Solution Co.,Ltd</h4>
     <table>
         <thead>
           <th>Linn Computer</th>
