@@ -26,7 +26,7 @@
               border-collapse: collapse;
             }
             th, td {
-              padding: 0.5rem;
+              padding: 0.4rem;
             }
             .bg-dark {
               background-color: #000;
@@ -63,7 +63,7 @@
    <body>
       <!-- <div class="wrapper" > -->
         <div class="watermark">
-          <h3>Linn IT Solution Co.,Ltd</h3>
+          <h4>Linn IT Solution Co.,Ltd</h4>
     <table>
         <thead>
           <th>Linn Computer</th>
