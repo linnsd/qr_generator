@@ -92,4 +92,13 @@ class CategoryController extends Controller
         $category = Category::find($id)->delete();
         return redirect()->route('categories.index')->with('success','Success');
     }
+
+    public function change_category_status(Request $request)
+    {
+        $category = Category::find($request->cat_id);
+        $category->status = $request->status;
+
+        $category->save();
+        return response()->json(['success'=>'Status change successfully.']);
+    }
 }

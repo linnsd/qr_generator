@@ -80,4 +80,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 	//category
 	Route::resource('categories','App\Http\Controllers\CategoryController');
+
+	Route::get('change_category_status','App\Http\Controllers\CategoryController@change_category_status')->name('change_category_status');
 });
