@@ -26,7 +26,7 @@
               border-collapse: collapse;
             }
             th, td {
-              padding: 0.8rem;
+              padding: 0.5rem;
             }
             .bg-dark {
               background-color: #000;
