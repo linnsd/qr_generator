@@ -85,7 +85,7 @@ class QRGenerateController extends Controller
                 'path' => '/uploads/qrcode/',
                 'photo' => $photo,
                 'qr_link' => $request->qr_link,
-                'category' => $request->category,
+                'category_id' => $request->category,
                 'remark' => $request->remark,
                 'c_by' => auth()->user()->id
             ]);
@@ -118,7 +118,7 @@ class QRGenerateController extends Controller
 
         $categories = Category::where('status', 1)->get();
 
-        return view('qrcode.create', compact('qr_data','categories'));
+        return view('qrcode.create', compact('qr_data', 'categories'));
     }
 
     /**
