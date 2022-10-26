@@ -114,6 +114,7 @@ class QRGenerateController extends Controller
             $qr_data = QRGenerate::find($qr_generate->id);
         } else {
             $qr_data = QRGenerate::where('qr_link', $request->qr_link)->first();
+            return redirect()->route('qr.index')->with('success','Already Exit!');
         }
 
         $categories = Category::where('status', 1)->get();
