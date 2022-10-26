@@ -41,7 +41,7 @@ class QRGenerateController extends Controller
         }
 
         if ($request->item_name != null) {
-            $qr_list = $qr_list->where('remark', 'like', '%' . $request->item_name . '%');
+            $qr_list = $qr_list->where('remark', 'like', '%' . $request->item_name . '%')->orWhere('q_r_generates.qr_link','%'.$request->item_name.'%');
         }
 
         if ($request->category != null) {
