@@ -41,7 +41,7 @@ class QRGenerateController extends Controller
         }
 
         if ($request->item_name != null) {
-            $qr_list = $qr_list->where('remark', 'like', '%' . $request->item_name . '%')->orWhere('q_r_generates.qr_link','%'.$request->item_name.'%');
+            $qr_list = $qr_list->where('q_r_generates.remark', 'like', '%' . $request->item_name . '%')->orWhere('q_r_generates.qr_link', 'LIKE', '%' . $request->item_name . '%');
         }
 
         if ($request->category != null) {
@@ -114,7 +114,7 @@ class QRGenerateController extends Controller
             $qr_data = QRGenerate::find($qr_generate->id);
         } else {
             $qr_data = QRGenerate::where('qr_link', $request->qr_link)->first();
-            return redirect()->route('qr.index')->with('success','Already Exit!');
+            return redirect()->route('qr.index')->with('success', 'Already Exit!');
         }
 
         $categories = Category::where('status', 1)->get();
