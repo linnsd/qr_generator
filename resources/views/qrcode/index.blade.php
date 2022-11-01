@@ -67,6 +67,7 @@
                          <!-- <th>QR Link</th> -->
                          <th>Item Name</th>
                          <th>Category</th>
+                         <th>URL</th>
                          <th>Action</th>
                      </tr>
                    </thead>
@@ -123,6 +124,7 @@
                         <!-- <td>{{$qr->qr_link}}</td> -->
                         <td>{{$qr->remark}}</td>
                         <td>{{ $qr->category_name }}</td>
+                        <td>{{$qr->qr_link}}</td>
                         <td>
                             <form action="{{route('qr.download')}}" method="post">
                                    @csrf
