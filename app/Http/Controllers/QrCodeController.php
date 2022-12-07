@@ -36,11 +36,11 @@ class QrCodeController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $photo = 'qrcode'.date("Y-m-d-H-m-s").'.png';
-        $attendance_qr = AttendanceQR::create([
-            'path'=>'/uploads/qrcode/',
-            'photo'=>$photo
-        ]);
+        // $photo = 'qrcode'.date("Y-m-d-H-m-s").'.png';
+        // $attendance_qr = AttendanceQR::create([
+        //     'path'=>'/uploads/qrcode/',
+        //     'photo'=>$photo
+        // ]);
 
         // $path = $member->path;
 
@@ -57,6 +57,7 @@ class QrCodeController extends Controller
 
         $qrcode = QrCode::backgroundColor(255, 255, 255)->color(0,0,0)
             ->format('png')->size(300)
+            ->merge(public_path('upload/linn.png'), 0.5, true)
             ->generate($request->qr_link);
 
         return redirect()->route('qr.index') 
