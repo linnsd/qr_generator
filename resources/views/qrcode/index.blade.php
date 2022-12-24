@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
     <!--
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <?php
@@ -125,8 +125,8 @@
 
                                                     <!-- Modal footer -->
                                                     <!--  <div class="modal-footer">
-                                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                            </div> -->
+                                                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                </div> -->
 
                                                 </div>
                                             </div>
@@ -143,6 +143,7 @@
                                             <td>{{ $qr->category_name }}</td>
                                             <td>{{ $qr->qr_link }}</td>
                                             <td>
+                                                {{-- Tested --}}
                                                 <form action="{{ route('qr.download') }}" method="post">
                                                     <div class="d-flex">
                                                         @csrf
