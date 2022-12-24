@@ -81,5 +81,9 @@ Route::group(['middleware' => 'auth'], function () {
 	//category
 	Route::resource('categories', 'App\Http\Controllers\CategoryController');
 
+	//qr logo
+	Route::resource('logo', 'App\Http\Controllers\QrLogoController');
+	Route::get('logo_status', 'App\Http\Controllers\QrLogoController@status_change')->name('logo_status');
+
 	Route::get('change_category_status', 'App\Http\Controllers\CategoryController@change_category_status')->name('change_category_status');
 });

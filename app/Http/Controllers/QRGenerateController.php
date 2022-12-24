@@ -9,6 +9,7 @@ use QrCode;
 use File;
 use App\Exports\QRExport;
 use App\Models\Category;
+use App\Models\QrLogo;
 use Maatwebsite\Excel\Facades\Excel;
 use URL;
 
@@ -102,9 +103,22 @@ class QRGenerateController extends Controller
                 File::delete($destinationPath . 'qrcode.png');
             }
 
-            $qrcode = QrCode::size(170)
-                ->format('png')
-                ->generate($request->qr_link, public_path('uploads/qrcode/' . $photo));
+            $logo = QrLogo::where('status', 1)->first();
+
+            if ($logo) {
+                $qrcode = QrCode::size(400)
+                    ->format('png')
+                    ->color(31, 97, 141)
+                    ->merge('/public/uploads/logos/' . $logo->file_name, .2)
+                    ->generate($request->qr_link, public_path('uploads/qrcode/' . $photo));
+            } else {
+                $qrcode = QrCode::size(400)
+                    ->format('png')
+                    ->color(31, 97, 141)
+                    ->generate($request->qr_link, public_path('uploads/qrcode/' . $photo));
+            }
+
+
 
             // dd($qrcode);
 
