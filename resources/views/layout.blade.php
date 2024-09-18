@@ -3,7 +3,7 @@
 
 <head>
     <title>QR Generator</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('./css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ asset('./css/fs.min.css') }}">
     @stack('css')
     <style type="text/css">
