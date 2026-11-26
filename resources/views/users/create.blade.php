@@ -63,7 +63,11 @@
                               <label for="password" class="col-md-4 col-form-label text-md-right">Role</label>
                               <div class="col-md-6">
                                
-                                 {!! Form::select('roles[]', $roles,[], array('class' => 'form-control')) !!}
+                                 <select name="roles[]" class="form-control">
+                                    @foreach ($roles as $value => $label)
+                                        <option value="{{ $value }}" @selected(in_array($value, old('roles', [])))>{{ $label }}</option>
+                                    @endforeach
+                                 </select>
                             
                                   
                                   @if ($errors->has('password'))
@@ -75,7 +79,7 @@
                         <!--   <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Role:</strong>
-                                {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
+                                {{-- multiple role select (disabled) --}}
                             </div>
                         </div> -->
   

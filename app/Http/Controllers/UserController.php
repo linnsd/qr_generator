@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Hash;
 use Illuminate\Support\Arr;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller

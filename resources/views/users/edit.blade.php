@@ -61,7 +61,11 @@
                           <div class="form-group row">
                               <label for="password" class="col-md-4 col-form-label text-md-right">Role</label>
                               <div class="col-md-6">
-                                  {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control')) !!}
+                                  <select name="roles[]" class="form-control">
+                                    @foreach ($roles as $value => $label)
+                                        <option value="{{ $value }}" @selected(in_array($value, old('roles', $userRole)))>{{ $label }}</option>
+                                    @endforeach
+                                 </select>
                                   @if ($errors->has('password'))
                                       <span class="text-danger">{{ $errors->first('password') }}</span>
                                   @endif

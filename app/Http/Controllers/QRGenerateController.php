@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\QRGenerate;
 use App\Models\PcSale;
 use Illuminate\Http\Request;
-use QrCode;
-use File;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\File;
 use App\Exports\QRExport;
 use App\Models\Category;
 use App\Models\QrLogo;
 use Maatwebsite\Excel\Facades\Excel;
-use URL;
+use Illuminate\Support\Facades\URL;
 
 class QRGenerateController extends Controller
 {

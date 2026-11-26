@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\QrCode;
 use Illuminate\Http\Request;
-use QrCode;
+use Illuminate\Support\Facades\File;
+use SimpleSoftwareIO\QrCode\Facades\QrCode as QrCodeGenerator;
 class QrCodeController extends Controller
 {
     /**
@@ -55,7 +56,7 @@ class QrCodeController extends Controller
         }
 
 
-        $qrcode = QrCode::backgroundColor(255, 255, 255)->color(0,0,0)
+        $qrcode = QrCodeGenerator::backgroundColor(255, 255, 255)->color(0,0,0)
             ->format('png')->size(300)
             ->merge(public_path('upload/linn.png'), 0.5, true)
             ->generate($request->qr_link);

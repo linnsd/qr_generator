@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use \Maatwebsite\Excel\Sheet;
 
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class PcSaleExport implements FromView, ShouldAutoSize
 {
